@@ -10,7 +10,7 @@ int Init_ship(Spaceship *s ,int i)
     s->speed=0.5;
     s->live=100;
     s->energy=0;
-    //s->pro=1;
+    s->pro=1;
     }
     else
     {
@@ -29,10 +29,10 @@ int Draw_ship(Spaceship *s)
     al_translate_transform(&transform,s->sx,s->sy);
     al_use_transform(&transform);
     al_draw_bitmap(setting[0],-35,-30,0);
-    /*if(s->pro==1)
+    if(s->pro==1)
     {
         al_draw_bitmap(pro,-52,-40,0);
-    }*/
+    }
     al_identity_transform(&transform);
     al_rotate_transform(&transform,0);
     al_translate_transform(&transform,0,0);
@@ -68,21 +68,25 @@ int Ship_grade(int grade)
 }
 int Scope_ship(Spaceship *s)
 {
-    if(s->sx+35>0)
+    al_identity_transform(&transform);
+    al_rotate_transform(&transform,0);
+    al_translate_transform(&transform,0,0);
+    al_use_transform(&transform);
+    if(s->sx+35<0)
     {
-
+        s->sx=s->sx+DISPLAY_W;
     }
-    if(s->sy+37>0)
+    if(s->sy+37<0)
     {
-
+        s->sy=s->sy+DISPLAY_H;
     }
-    if(s->sx+35<DISPLAY_W)
+    if(s->sx+35>DISPLAY_W)
     {
-
+        s->sx=s->sx-DISPLAY_W;
     }
-    if(s->sy+37<DISPLAY_H)
+    if(s->sy+37>DISPLAY_H)
     {
-
+        s->sy=s->sy-DISPLAY_H;
     }
 
 }

@@ -13,6 +13,11 @@
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 #include <allegro5/fmaths.h>
+#define DISPLAY_H 700          //屏幕高度
+#define DISPLAY_W 1250              //屏幕宽度
+#define FPS 60
+#define BOSSBlast_number 100
+
 typedef struct {
     float sx;//位置
     float sy;
@@ -45,6 +50,15 @@ typedef struct {
     float heading;
     float speed;
     int gone;
+
+
+}BOSS_Blast;//boss炮弹
+typedef struct {
+    float sx;
+    float sy;
+    float heading;
+    float speed;
+    int gone;
     int live;//生命值
     int energy;
     int pro;
@@ -58,6 +72,12 @@ typedef struct {
     float live;  //生命值
     int xy;//范围
     int gone;//是否毁灭
+    int old_blast;
+    int time_b;
+    int blast_type;//子弹类型
+    int TX;
+    BOSS_Blast blast1[BOSSBlast_number];
+    BOSS_Blast blast2[BOSSBlast_number];
 }BOSS1;
 typedef struct {
     float sx;
@@ -77,20 +97,20 @@ ALLEGRO_FONT *font[5];
 ALLEGRO_SAMPLE *sample[10];
 ALLEGRO_BITMAP *setting[10];
 ALLEGRO_BITMAP *baoz[10];
-//ALLEGRO_BITMAP *pro;// 保护罩
+ALLEGRO_BITMAP *pro;// 保护罩
 ALLEGRO_BITMAP *buff;
+ALLEGRO_BITMAP *boss_blast[5];
 ALLEGRO_EVENT ev;
 //const int DISPLAY_W = 1100;//屏幕宽度
 //const int DISPLAY_H = 700;//屏幕高度
-#define DISPLAY_H 700          //屏幕高度
-#define DISPLAY_W 1250              //屏幕宽度
-#define FPS 60
 
 //彗星函数
 int Init_star(Asteroid *c);
 int Draw_star(Asteroid *c);
 int move_star(Asteroid *c);
 int Scope_star(Asteroid *c);
+//int hit_star(Asteroid c, struct Blast *blast_h);
+//int hit_star();
 //初始化
 int GameInit();
 //战机函数
@@ -101,13 +121,26 @@ int Draw_ship(Spaceship *s);
 int music_game(int i,float choose);
 //boss
 int init_boss(BOSS1 *boss);
-int Draw_boss(BOSS1 *boss);
-int Move_boss(BOSS1 *boss);
+int Draw_boss(BOSS1 *boss,Spaceship *s);
+int Move_boss(BOSS1 *boss,Spaceship *s);
+int hit_boss(BOSS1 boss, struct Blast *blast_h);
+int init_bs_blast(BOSS1 *boss,Spaceship *s);
+int Draw_bs_blast(BOSS1 *boss);
+double count_head(double x,double y,Spaceship *s);
+int hit_ship(Spaceship *s,BOSS1 *b);
 //地图
 //爆炸
 int Baozha();
 int bomb(Asteroid *c,int time_bomb);
-//int map_game();
+//子弹
+int Init_Blast(struct Blast* *b);
+int Insert_Blast(struct Blast* *b,Spaceship s);
+int Delete_Blast(struct Blast* *b,int pos);
+int Draw_Blast(struct Blast* *b,Spaceship s);
+int Scope_Blast(struct Blast* *b,Spaceship s);
+int Move_Blast( struct Blast* *b);
+//boss
+
 #define black     al_map_rgb(0,0,0)       //黑色
 #define green     al_map_rgb(0,255,0)   //绿色
 #define yellow    al_map_rgb(255,255,0)     //黄色

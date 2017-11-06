@@ -156,10 +156,18 @@ int GameInit()
         al_destroy_display(display);
         return -1;
     }
-    /*pro = al_load_bitmap("../startrek/图片/waihuan.png");
+    pro = al_load_bitmap("../startrek/图片/waihuan.png");
     if(!pro)
     {
         fprintf(stderr,"pro:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+
+    boss_blast[0] = al_load_bitmap("../startrek/wd_star5.png");
+    if(!boss_blast)
+    {
+        fprintf(stderr,"boss_blast0:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
@@ -169,7 +177,7 @@ int GameInit()
         fprintf(stderr,"buff:Failed to load image!");
         al_destroy_display(display);
         return -1;
-    }*/
+    }
     Baozha();
     if (!al_install_mouse()) {
         fprintf(stderr,"error3:mouse\n");

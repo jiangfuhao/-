@@ -3,8 +3,8 @@ int Init_star(Asteroid *c)
 {
     c->sx = rand() % DISPLAY_W;
     c->sy = rand() % DISPLAY_H;
-    c->heading = (rand() % (int)(atan(1) * 4));
-    c->twist = (rand() % (int)(atan(1) * 4));
+    c->heading = (rand() % (int)(atan(1) * 8));
+    c->twist = (rand() % (int)(atan(1) * 8));
     c->speed = 1.0;
     c->rot_velocity = 0.1;
     c->scale = 1;
@@ -22,6 +22,7 @@ int Draw_star(Asteroid *c)
     al_use_transform(&transform);
     if(c->gone==1)
     {
+
        if(c->TX!=0)
        {
 
@@ -41,6 +42,7 @@ int Draw_star(Asteroid *c)
     {
 
         al_draw_bitmap(setting[2],-30,-30,0);
+        move_star(c);
     }
 
     /*al_draw_line(-20 * c->scale,20* c->scale,-25* c->scale,5 * c->scale,c->color,2.0f);
@@ -69,6 +71,45 @@ int move_star(Asteroid *c)
 }
 int Scope_star(Asteroid *c)
 {
-    if(c->sx<=0||c->sy<=0||c->sx>=DISPLAY_W||c->sy>=DISPLAY_H) c->heading = (rand() % (int)(atan(1) * 8));
+    al_identity_transform(&transform);
+    al_rotate_transform(&transform,0);
+    al_translate_transform(&transform,0,0);
+    al_use_transform(&transform);
+    if(c->sx+35<0)
+    {
+        c->sx=c->sx+DISPLAY_W;
+    }
+    if(c->sy+37<0)
+    {
+        c->sy=c->sy+DISPLAY_H;
+    }
+    if(c->sx+35>DISPLAY_W)
+    {
+        c->sx=c->sx-DISPLAY_W;
+    }
+    if(c->sy+37>DISPLAY_H)
+    {
+        c->sy=c->sy-DISPLAY_H;
+    }
+
     return 0;
 }
+/*int hit_star(Asteroid c, struct Blast *blast_h)
+{
+    if(c.gone==2)
+    {
+        if(blast_h->sx<=c.sx+25&&blast_h->sx>=c.sx-25) //子弹射中彗星
+        {
+            if (blast_h->sy<=c.sy+25&&blast_h->sy>=c.sy-25)
+            {
+
+                return 1;
+            }
+
+
+        }
+
+
+    }
+}
+*/
