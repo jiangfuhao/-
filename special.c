@@ -13,4 +13,5 @@ int bomb(Asteroid *c,int time_bomb)
             time_bomb=0;
         }
     }
+    return 0;
 }

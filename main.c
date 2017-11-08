@@ -4,44 +4,18 @@ const int REC_SIZE= 10;
 const int Blast_number=1000;//子弹个数
 const int ship_live=3;
 int decision=0;
-const int comet_lives = 20;//彗星个数
 int grade = 0;
 int Blast_old=0;
 int D_blast =0;//子弹已经发射的个数
 int map_h;
-int time_pro=0;
+int time_pro=0;//保护罩时间
+int xboss_out=0;//xboss出现时间
+int boss_out=0;//boss出现
 
 enum MYKEYS {
    KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT,KEY_SPASE,KEY_E,KEY_F,KEY_S,KEY_D,KEY_A
 };
 //boss
-
-//飞机
-int map_game()
-{
-
-    int a,b;
-    a=map_h-DISPLAY_H;
-    b=map_h;
-    al_identity_transform(&transform);
-    al_rotate_transform(&transform,0);
-    al_translate_transform(&transform,0,0);
-    al_use_transform(&transform);
-    al_draw_bitmap(setting[3],0,a,0);
-    al_draw_bitmap(setting[3],0,b,0);
-    if(map_h==DISPLAY_H)
-    {
-        map_h=0;
-    }
-
-
-}
-
-//子弹
-
-
-
-
 
 
 //初始游戏的屏幕
@@ -123,6 +97,7 @@ int Init_screen()
              al_draw_bitmap(setting[1],0,0,0);
              switch (decision) {
              case 0:
+                 al_draw_text(font[3],blu,15,18,ALLEGRO_ALIGN_CENTRE,"版本：startrek-0.6");
                  al_draw_text(font[0],blu,DISPLAY_W/2,0,ALLEGRO_ALIGN_CENTRE,"爆破彗星");
                  if(choose==1)
                  {
@@ -207,9 +182,11 @@ int main(void)
    bool key[10] = {false, false, false, false,false,false, false, false, false,false};
    Asteroid comet[comet_lives];            //彗星数组
    Spaceship ship[2];//飞船数组
-   BUFF ship_buf;
+   BUFF ship_buff;
    struct Blast ship_blast,*p_blast,*blast_h;//飞机子弹
-   BOSS1 boss;
+   BOSS1 boss; //boss定义
+   XBOSS xboss[XBOSS_number];//xboss定义
+   BOSS_Blast xb_blast[XBOSS_number]; //xb_blast定义
    int bt=1;
    int time_blast1=0;
    int boss_blast_time=0;
@@ -260,10 +237,12 @@ int main(void)
           if(key[KEY_LEFT])
           {
               ship[0].heading-=0.05;
+              //printf("%f\n",ship[0].heading);
           }
           if(key[KEY_RIGHT])
           {
               ship[0].heading+=0.05;
+              // printf("%f\n",ship[0].heading);
           }
           if(key[KEY_SPASE])
           {
@@ -393,18 +372,34 @@ int main(void)
       if(redraw && al_is_event_queue_empty(event_queue)) {
          redraw = false;
          al_clear_to_color(al_map_rgb(250,155,155));
-         map_game();
+         map_game(&map_h);
          map_h++;
          Ship_grade(grade);
-         if(grade==10)
+         if(grade==100&&boss_out==0)
          {
+             boss_out=1;
              init_boss(&boss);
+         }
+         if(grade!=0&&grade%5==0&&xboss_out==0)
+         {
+             xboss_out=1;
+             init_xboss(xboss,xb_blast);
+         }
+         if(xboss_out==1)
+         {
+
+             hit_ship_xb(&ship[0],xboss,xb_blast);
+
+             if(judge_xboss(xboss)==0)
+             {
+                 xboss_out=0;
+             }
+             Draw_xb_blast(xb_blast);
+             xb_bhit_star(xb_blast,&ship[0]);
          }
          if(boss.gone==1)
          {
              Draw_boss(&boss,&ship[0]);
-
-
              if(boss.live<=0)
              {
                  grade=grade+100;
@@ -413,77 +408,70 @@ int main(void)
 
          }
 
-         for (int i=0;i<comet_lives;i++)             //画彗星
-         {
-
-             if(comet[i].gone!=0)
-             {
-                 if(comet[i].gone==2)
-                 {
-                     if(ship[0].sx<=comet[i].sx+25&&ship[0].sx>=comet[i].sx-25) //彗星撞飞船
-                     {
-                         if (ship[0].sy<=comet[i].sy+25&&ship[0].sy>=comet[i].sy-25)
-                         {
-                             if(ship[0].pro==0)
-                             {
-                             ship[0].live=ship[0].live-10;
-                             }
-                             comet[i].gone=1;
-                         }
-                     }
-                 }
-
-                 Scope_star(&comet[i]);
-                 Draw_star(&comet[i]);
-
-             }
-             else if(comet[i].gone==0)
-             {
-                 time_star1++;
-                 if(time_star1==500)
-                 {
-                     Init_star(&comet[i]);
-                     time_star1=0;
-                 }
-             }
-
-         }
+         hit_star(comet,&time_star1,&ship[0]);//彗星主函数
 
          Draw_ship(&ship[0]);
          while(blast_h!=NULL)
          {
              Draw_Blast(&blast_h,ship[0]);
-                 if(blast_h->sy<-DISPLAY_H||blast_h->sy>DISPLAY_H*2||blast_h->sx<-DISPLAY_W||blast_h->sx>DISPLAY_W*2)
+             if(blast_h->sy<-DISPLAY_H||blast_h->sy>DISPLAY_H*2||blast_h->sx<-DISPLAY_W||blast_h->sx>DISPLAY_W*2)
+             {
+
+                 Delete_Blast(&p_blast,bt);
+
+             }
+             for(int b=0;b<comet_lives;b++)//子弹射中彗星
+             {
+
+
+                if(comet[b].gone==2)
                  {
-
-                     Delete_Blast(&p_blast,bt);
-
-                 }
-                 for(int b=0;b<comet_lives;b++)//子弹射中彗星
-                 {
-
-
-                    if(comet[b].gone==2)
+                     if(blast_h->sx<=comet[b].sx+25&&blast_h->sx>=comet[b].sx-25) //子弹射中彗星
                      {
-                         if(blast_h->sx<=comet[b].sx+25&&blast_h->sx>=comet[b].sx-25) //子弹射中彗星
+                         if (blast_h->sy-20<=comet[b].sy+25&&blast_h->sy-20>=comet[b].sy-25)
                          {
-                             if (blast_h->sy<=comet[b].sy+25&&blast_h->sy>=comet[b].sy-25)
+                             comet[b].gone=1;
+
+                             Delete_Blast(&p_blast,bt);
+                             if(ship[0].energy!=100)    // 能量增加
                              {
-                                 comet[b].gone=1;
+                                 ship[0].energy++;
 
-                                 Delete_Blast(&p_blast,bt);
-                                 if(ship[0].energy!=100)    // 能量增加
-                                 {
-                                     ship[0].energy++;
-
-                                 }
-                                 grade++;
                              }
-
+                             grade++;
                          }
+
                      }
                  }
+             }
 
+             for(int i=0;i<XBOSS_number;i++)
+             {
+
+                 if(xboss[i].gone==2)
+                 {
+                     al_identity_transform(&transform);
+                     al_rotate_transform(&transform,xboss[i].twist);
+                     al_translate_transform(&transform,xboss[i].sx,xboss[i].sy);
+                     al_use_transform(&transform);
+                     if(blast_h->sx>xboss[i].sx-20&&blast_h->sx<xboss[i].sx+20) //子弹射中彗星
+                     {
+                         if (blast_h->sy-20>xboss[i].sy-20&&blast_h->sy-20<xboss[i].sy+20)
+                         {
+                             xboss[i].gone=1;
+                             //al_rest(2);
+                             Delete_Blast(&p_blast,bt);
+                             if(ship[0].energy!=100)    // 能量增加
+                             {
+                                 ship[0].energy++;
+
+                             }
+                             grade++;
+                         }
+
+                     }
+                 }
+             }
 
              if(hit_boss(boss,blast_h)==1)
              {

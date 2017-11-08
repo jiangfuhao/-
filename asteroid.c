@@ -94,22 +94,43 @@ int Scope_star(Asteroid *c)
 
     return 0;
 }
-/*int hit_star(Asteroid c, struct Blast *blast_h)
+int hit_star(Asteroid comet[],int *time_star1,Spaceship *ship)//彗星撞飞船
 {
-    if(c.gone==2)
+    for (int i=0;i<comet_lives;i++)             //画彗星
     {
-        if(blast_h->sx<=c.sx+25&&blast_h->sx>=c.sx-25) //子弹射中彗星
-        {
-            if (blast_h->sy<=c.sy+25&&blast_h->sy>=c.sy-25)
-            {
 
-                return 1;
+        if(comet[i].gone!=0)
+        {
+            if(comet[i].gone==2)
+            {
+                if(ship->sx<=comet[i].sx+25&&ship->sx>=comet[i].sx-25) //彗星撞飞船
+                {
+                    if (ship->sy<=comet[i].sy+25&&ship->sy>=comet[i].sy-25)
+                    {
+                        if(ship->pro==0)
+                        {
+                        ship->live=ship->live-10;
+                        }
+                        comet[i].gone=1;
+                    }
+                }
             }
 
+            Scope_star(&comet[i]);
+            Draw_star(&comet[i]);
 
         }
+        else if(comet[i].gone==0)
+        {
 
+            *time_star1=*time_star1+1;
+            if(*time_star1==500)
+            {
+                Init_star(&comet[i]);
+                *time_star1=0;
+            }
+        }
 
     }
 }
-*/
+

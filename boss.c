@@ -67,24 +67,6 @@ int init_bs_blast(BOSS1 *boss,Spaceship *s)
     return 0;
 
 }
-double count_head(double x,double y,Spaceship *s)
-{
-    double heading=0;
-    x=s->sx-x-150;
-
-    y=s->sy-y-200;
-    //heading =atan(x/y);
-    /*if(y>0)
-    {
-        heading =atan(x/y);
-    }
-    else
-    {
-        heading =atan(y/x);
-    }*/
-
-    return 0;
-}
 
 int Draw_bs_blast(BOSS1 *boss)
 {
@@ -125,9 +107,7 @@ int hit_ship(Spaceship *s,BOSS1 *b)
             }
         }
     }
-
 }
-
 int Draw_boss(BOSS1 *boss,Spaceship *s)
 {
     al_identity_transform(&transform);
@@ -223,4 +203,176 @@ int hit_boss(BOSS1 boss, struct Blast *blast_h)
     {
         return 0;
     }
+}
+int init_xboss(XBOSS xb[],BOSS_Blast xb_blast[])
+{
+    init_xb_blast(xb_blast);
+    int t=rand()%2;
+    float heading;
+    int x;
+    if(t==1)
+    {
+        x=0;
+        heading=-1.5;
+
+    }else{
+        x=DISPLAY_W;
+        heading=1.5;
+    }
+    int ratation=rand()%300;
+    int y=200+rand()%(int)(DISPLAY_H/4.0);
+    for(int i=0;i<XBOSS_number;i++)
+    {
+        //printf("%d\n",i);
+       xb[i].sx=x;
+       xb[i].sy=y;
+       xb[i].heading=heading;
+       xb[i].twist=-xb[i].heading;
+       xb[i].rot_velocity = 0.025;
+       xb[i].gone=2;
+       xb[i].live=2;
+       xb[i].xy=0;
+       xb[i].TX=10;
+       xb[i].s_time=0;
+       xb[i].speed=3;
+       xb[i].fly_mode=0;
+       xb[i].ratation=ratation;
+       if(heading==-1.5)
+       {
+           x=x-80;
+       }
+       else
+       {
+           x=x+80;
+       }
+    }
+
+    return 0;
+}
+int Draw_xboss(XBOSS *xb,BOSS_Blast *xb_bl,Spaceship *s)
+{
+
+        al_identity_transform(&transform);
+        al_rotate_transform(&transform,xb->heading);
+        al_translate_transform(&transform,xb->sx,xb->sy);
+        al_use_transform(&transform);
+        if(xb->gone==1)
+        {
+
+           if(xb->TX!=0)
+           {
+
+               //printf("%d\n",xb->TX);
+               al_draw_bitmap(baoz_xb[10-xb->TX],-30,-30,0);
+               xb->s_time=xb->s_time+5;
+               if(xb->s_time==10)
+               {
+                  xb->TX=xb->TX-1;;
+                  xb->s_time=0;
+               }
+
+           }
+           if(xb->TX==0)xb->gone=0;
+        }
+        else if(xb->gone==2)
+        {
+
+            al_draw_bitmap(xboss,-30,-30,0);
+            Move_xboss(xb,xb_bl,s);
+        }
+    return 0;
+}
+int Move_xboss(XBOSS *xb,BOSS_Blast *xb_blast,Spaceship *s)
+{
+
+        if(xb->gone==2)
+        {
+            if(xb->sx>300&&xb->sx<800&&xb->heading<(-xb->twist+(xb->rot_velocity*250)))
+            {
+
+                xb->fly_mode=1;
+            }
+            if(xb->fly_mode==1)
+            {
+                if(xb_blast->gone==0)
+                {
+                    lord_xb_blast(xb,xb_blast,s);
+                }
+                xb->heading+=xb->rot_velocity;
+                xb->sx -= xb->speed * sin(xb->heading);
+                xb->sy += xb->speed * cos(xb->heading);
+                if(xb->heading>=(-xb->heading+(xb->rot_velocity*300)))
+                {
+                    xb->fly_mode=0;
+                }
+            }
+            else
+            {
+
+                xb->sx -= xb->speed * sin(xb->heading);
+                xb->sy += xb->speed * cos(xb->heading);
+            }
+
+        }
+
+}
+
+int Scope_xboss(XBOSS *xb)
+{
+    al_identity_transform(&transform);
+    al_rotate_transform(&transform,0);
+    al_translate_transform(&transform,0,0);
+    al_use_transform(&transform);
+    for(int i=0;i<XBOSS_number;i++)
+    {
+        if(xb->sx>2*DISPLAY_W)
+        {
+            xb->gone=0;
+        }
+    }
+    return 0;
+}
+int hit_ship_xb(Spaceship *s,XBOSS xb[],BOSS_Blast xb_blast[])
+{
+
+
+    for(int i=0;i<XBOSS_number;i++)
+    {
+
+        if(xb[i].gone!=0)
+        {
+            if(xb[i].gone==2)
+            {
+                if(s->sx>xb[i].sx-30&&s->sx<xb[i].sx+30)
+                {
+                    if(s->sy>xb[i].sy-30&&s->sy<xb[i].sy+20)
+                    {
+                        //printf("sx:%f,sy:%f,x,%f,y:%faa\n",s->sx,s->sy,xb[i].sx,xb[i].sy);
+                        if(s->pro==0)
+                        {
+                             s->live=s->live-10;
+                        }
+
+                        xb[i].gone=1;
+                    }
+                }
+            }
+            Scope_xboss(&xb[i]);
+            Draw_xboss(&xb[i],&xb_blast[i],s);
+
+        }
+    }
+    return 0;
+}
+int judge_xboss(XBOSS xb[])
+{
+    for(int i=0;i<XBOSS_number;i++)
+    {
+        if(xb[i].gone!=0)
+        {
+            return 1;
+        }
+
+    }
+    return 0;
 }
