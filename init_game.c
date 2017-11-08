@@ -113,6 +113,35 @@ int GameInit()
         fprintf(stderr, "failed to initialize image addon!\n");
        return -1;
     }
+    photo[0] = al_load_bitmap("../startrek/photo1.png");
+    if(!photo[0])
+    {
+        fprintf(stderr,"0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    photo[1] = al_load_bitmap("../startrek/photo2.png");
+    if(!photo[1])
+    {
+        fprintf(stderr,"0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    photo[2] = al_load_bitmap("../startrek/photo3.png");
+    if(!photo[2])
+    {
+        fprintf(stderr,"0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+
+    photo[3] = al_load_bitmap("../startrek/photo4.png");
+    if(!photo[2])
+    {
+        fprintf(stderr,"0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
 
     setting[0] = al_load_bitmap("../startrek/a-12.png");
     if(!setting[0])

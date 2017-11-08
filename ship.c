@@ -8,9 +8,9 @@ int Init_ship(Spaceship *s ,int i)
     s->gone = false;
     s->heading=0;
     s->speed=0.5;
-    s->live=100;
+    s->live=30;
     s->energy=0;
-    //s->pro=1;
+    s->pro=0;
     }
     else
     {
