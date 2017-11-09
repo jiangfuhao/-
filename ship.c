@@ -10,8 +10,8 @@ int Init_ship(Spaceship *s ,int i)
     s->speed=0.5;
     s->live=100;
     s->energy=0;
-    s->pro=1;
     s->blast_mode=0;
+    s->pro=0;
     }
     else
     {

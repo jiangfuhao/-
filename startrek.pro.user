@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<<<<<<< HEAD
 <!-- Written by QtCreator 4.3.0, 2017-11-09T21:26:42. -->
+=======
+<!-- Written by QtCreator 4.3.0, 2017-11-08T19:28:27. -->
+>>>>>>> 70fd99b0c77e3a349d5d09ba9305004aaee0170d
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -250,7 +254,11 @@
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">startrek.pro</value>
     <value type="bool" key="Qt4ProjectManager.Qt4RunConfiguration.UseDyldImageSuffix">false</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory"></value>
+<<<<<<< HEAD
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory.default"></value>
+=======
+    <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory.default">/root/build-startrek-C_C_Application_gcc_7_1_1-Debug</value>
+>>>>>>> 70fd99b0c77e3a349d5d09ba9305004aaee0170d
     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>

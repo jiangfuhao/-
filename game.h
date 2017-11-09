@@ -123,6 +123,9 @@ ALLEGRO_BITMAP *xb_bl;
 ALLEGRO_BITMAP *pro;// 保护罩
 ALLEGRO_BITMAP *buffs[6];
 ALLEGRO_BITMAP *boss_blast[5];
+ALLEGRO_BITMAP *photo[5];
+//ALLEGRO_BITMAP *pro;// 保护罩
+ALLEGRO_BITMAP *buff;
 ALLEGRO_EVENT ev;
 
 //彗星函数
