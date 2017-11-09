@@ -304,56 +304,56 @@ int GameInit()
         return -1;
     }
 
-    setting[0] = al_load_bitmap("../startrek/a-12.png");
+    setting[0] = al_load_bitmap("../startrek/1509544151865.png");
     if(!setting[0])
     {
         fprintf(stderr,"0:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
-    setting[1] = al_load_bitmap("../startrek/resultbg.jpg");
+    setting[1] = al_load_bitmap("../startrek/2620808089223323183.jpg");
     if(!setting[1])
     {
         fprintf(stderr,"1:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
-    setting[2] = al_load_bitmap("../startrek/敌机/WD_6.png");
+    setting[2] = al_load_bitmap("../startrek/1 (151).png");
     if(!setting[2])
     {
         fprintf(stderr,"2:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
-    setting[3] = al_load_bitmap("../startrek/map01-01.jpg");
+    setting[3] = al_load_bitmap("../startrek/第一关.png");
     if(!setting[3])
     {
         fprintf(stderr,"3:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
-    setting[4] = al_load_bitmap("../startrek/upgrade_bule_line_003.png");
+    setting[4] = al_load_bitmap("../startrek/bullet_06_01.png");
     if(!setting[4])
     {
         fprintf(stderr,"4:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
-    setting[5] = al_load_bitmap("../startrek/boss/mini-boss00.png");
+    setting[5] = al_load_bitmap("../startrek/1 (81).png");
     if(!setting[5])
     {
         fprintf(stderr,"5:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
-    xboss = al_load_bitmap("../startrek/敌机/c-03.png");
+    xboss = al_load_bitmap("../startrek/1 (75).png");
     if(!xboss)
     {
         fprintf(stderr,"xboss:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
-    pro = al_load_bitmap("../startrek/图片/waihuan.png");
+    pro = al_load_bitmap("../startrek/witch_cast_03.png");
     if(!pro)
     {
         fprintf(stderr,"pro:Failed to load image!");
@@ -361,14 +361,14 @@ int GameInit()
         return -1;
     }
 
-    boss_blast[0] = al_load_bitmap("../startrek/boss/wd_star5.png");
+    boss_blast[0] = al_load_bitmap("../startrek/bullet_07_01.png");
     if(!boss_blast[0])
     {
         fprintf(stderr,"boss_blast0:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
-    xb_bl = al_load_bitmap("../startrek/图片/r-liaojizidan-02.png");
+    xb_bl = al_load_bitmap("../startrek/bullet_01_03.png");
     if(!xb_bl)
     {
         fprintf(stderr,"xb_bl:Failed to load image!");

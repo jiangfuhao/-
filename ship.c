@@ -32,7 +32,7 @@ int Draw_ship(Spaceship *s)
     al_draw_bitmap(setting[0],-35,-30,0);
     if(s->pro==1)
     {
-        al_draw_bitmap(pro,-52,-40,0);
+        al_draw_bitmap(pro,-40,-40,0);
     }
     al_identity_transform(&transform);
     al_rotate_transform(&transform,0);

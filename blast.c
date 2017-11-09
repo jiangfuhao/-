@@ -114,7 +114,7 @@ int Draw_Blast(struct Blast* *b,Spaceship s)
     al_translate_transform(&transform,(*b)->sx,(*b)->sy);
     al_use_transform(&transform);
     //al_draw_filled_rectangle(-3,-15,2,-5,(*b)->color);
-    al_draw_bitmap(setting[4],-4.5,-25,0);
+    al_draw_bitmap(setting[4],8.5,-25,0);
     return 0;
 }
 int Move_Blast( struct Blast* *b)
