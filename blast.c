@@ -5,9 +5,49 @@ int Init_Blast(struct Blast* *b)
     *b=NULL;
     return 0;
 }
-int Insert_Blast(struct Blast* *b,Spaceship s)
+int Blast_mode(struct Blast* *p_blast,Spaceship s)   //飞机子弹种类
 {
+    if(s.blast_mode==1)
+    {
+       int a=10;
+       for(int i=0;i<3;i++)
+       {
+        Insert_Blast(p_blast,s,a,0,0);
+        a=a-10;
+       }
+    }
+    else if(s.blast_mode==2)
+    {
+        double x=20;
+        double y=0;
+        double j=0;
+        double heading=0.8;
+        for(int i=0;i<5;i++)
+        {
 
+            Insert_Blast(p_blast,s,x,y,heading);
+            x=x-10;
+            heading=heading-0.4;
+
+            if(i==2)
+            {
+                j=1;
+            }
+            if(j==1)
+            {
+                y=y+10;
+            }else{
+                y=y-10;
+            }
+        }
+    }
+    else{
+        Insert_Blast(p_blast,s,0,0,0);
+    }
+
+}
+int Insert_Blast(struct Blast* *b,Spaceship s,double x,double y,double heading)
+{
     struct Blast *tail;
     tail=(struct Blast *)malloc(sizeof(struct Blast));
     if(tail==NULL)
@@ -16,9 +56,9 @@ int Insert_Blast(struct Blast* *b,Spaceship s)
         return 1;
     }
 
-    tail->sx = s.sx;
-    tail->sy = s.sy;
-    tail->heading = s.heading;
+    tail->sx = s.sx+x;
+    tail->sy = s.sy+y;
+    tail->heading = s.heading + heading;
     tail->speed = s.speed*3;
     tail->color = al_map_rgb(255,255,255);
     tail->next=*b;

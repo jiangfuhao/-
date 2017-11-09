@@ -11,7 +11,9 @@ int map_h;
 int time_pro=0;//保护罩时间
 int xboss_out=0;//xboss出现时间
 int boss_out=0;//boss出现
-
+int buff_out_time=0;// buff出现时间
+int buff_out = 0;
+int buff_xs=0;
 enum MYKEYS {
    KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT,KEY_SPASE,KEY_E,KEY_F,KEY_S,KEY_D,KEY_A
 };
@@ -97,7 +99,7 @@ int Init_screen()
              al_draw_bitmap(setting[1],0,0,0);
              switch (decision) {
              case 0:
-                 al_draw_text(font[3],blu,15,18,ALLEGRO_ALIGN_CENTRE,"版本：startrek-0.6");
+                 al_draw_text(font[4],blu,60,15,ALLEGRO_ALIGN_CENTRE,"版本：startrek-0.7");
                  al_draw_text(font[0],blu,DISPLAY_W/2,0,ALLEGRO_ALIGN_CENTRE,"爆破彗星");
                  if(choose==1)
                  {
@@ -199,6 +201,7 @@ int main(void)
    {
        Init_star(&comet[i]);
    }
+
    Init_ship(&ship[0],1); //飞船初始
    //子弹定义
    p_blast=&ship_blast;
@@ -250,7 +253,7 @@ int main(void)
               if(time_blast1==6)
               {
                   //al_play_sample(sample[2],1.0,0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);
-                  Insert_Blast(&p_blast,ship[0]);
+                  Blast_mode(&p_blast,ship[0]);
                   time_blast1=0;
               }
 
@@ -375,7 +378,7 @@ int main(void)
          map_game(&map_h);
          map_h++;
          Ship_grade(grade);
-         if(grade==100&&boss_out==0)
+         if(grade==500&&boss_out==0)
          {
              boss_out=1;
              init_boss(&boss);
@@ -397,13 +400,49 @@ int main(void)
              Draw_xb_blast(xb_blast);
              xb_bhit_star(xb_blast,&ship[0]);
          }
-         if(boss.gone==1)
+         if(boss.gone!=0)
          {
-             Draw_boss(&boss,&ship[0]);
-             if(boss.live<=0)
+
+              Draw_boss(&boss,&ship[0]);
+
+             if(boss.live<0&&boss.TX!=0)
              {
+
                  grade=grade+100;
-                 boss.gone=0;
+                 boss.gone=1;
+                 boss_out=0;
+
+
+             }
+
+         }
+
+         //buff出现
+         if(buff_out_time==500&&buff_out==0)
+         {
+             buff_out=1;
+             Init_buff(&ship_buff);//初始化buff
+             buff_out_time=0;
+
+         }
+         if(buff_out==0)
+         {
+              buff_out_time++;
+         }
+
+
+         if(buff_out==1)
+         {
+             buff_xs++;
+             SHIP_buff(&ship[0],&ship_buff);
+             if(buff_xs==800)
+             {
+                 ship_buff.gone=1;
+                 buff_out=0;
+             }
+             if(ship_buff.gone==1)
+             {
+                 buff_out=0;
              }
 
          }
@@ -466,7 +505,7 @@ int main(void)
                                  ship[0].energy++;
 
                              }
-                             grade++;
+                             grade=grade+2;
                          }
 
                      }
@@ -500,7 +539,6 @@ int main(void)
       {
           decision=0;
       }
-
 
    }
 

@@ -1,6 +1,7 @@
 #include"game.h"
 int Baozha()
 {
+    //comet
     baoz[0] = al_load_bitmap("../startrek/爆炸/LAZY_LOAD_normal_new_hurt00.png");
     if(!baoz[0])
     {
@@ -65,83 +66,164 @@ int Baozha()
         return -1;
     }
 
+    //xboss
     baoz_xb[0] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_gravity_1_00.png");
     if(!baoz_xb[0])
     {
-        fprintf(stderr,"b0:Failed to load image!");
+        fprintf(stderr,"xb0:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
    baoz_xb[1] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_gravity_1_01.png");
     if(!baoz_xb[1])
     {
-        fprintf(stderr,"b1:Failed to load image!");
+        fprintf(stderr,"xb1:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
     baoz_xb[2] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_gravity_1_02.png");
     if(!baoz_xb[2])
     {
-        fprintf(stderr,"b3:Failed to load image!");
+        fprintf(stderr,"xb3:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
     baoz_xb[3] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_gravity_1_03.png");
     if(!baoz_xb[3])
     {
-        fprintf(stderr,"b3:Failed to load image!");
+        fprintf(stderr,"xb3:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
     baoz_xb[4] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_gravity_1_04.png");
     if(!baoz_xb[4])
     {
-        fprintf(stderr,"b4:Failed to load image!");
+        fprintf(stderr,"xb4:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
     baoz_xb[5] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_gravity_1_05.png");
     if(!baoz_xb[5])
     {
-        fprintf(stderr,"b5:Failed to load image!");
+        fprintf(stderr,"xb5:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
     baoz_xb[6] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_gravity_1_06.png");
     if(!baoz_xb[6])
     {
-        fprintf(stderr,"b6:Failed to load image!");
+        fprintf(stderr,"xb6:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
     baoz_xb[7] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_gravity_1_07.png");
     if(!baoz_xb[7])
     {
-        fprintf(stderr,"b7:Failed to load image!");
+        fprintf(stderr,"xb7:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
     baoz_xb[8] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_gravity_1_08.png");
     if(!baoz_xb[8])
     {
-        fprintf(stderr,"b8:Failed to load image!");
+        fprintf(stderr,"xb8:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
     baoz_xb[9] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_gravity_1_09.png");
     if(!baoz_xb[7])
     {
-        fprintf(stderr,"b7:Failed to load image!");
+        fprintf(stderr,"xb7:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
     baoz_xb[10] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_gravity_1_10.png");
     if(!baoz_xb[8])
     {
-        fprintf(stderr,"b8:Failed to load image!");
+        fprintf(stderr,"xb8:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
+
+    //boss
+   boss_bz[0] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_indra_cross_hurt_center00.png");
+    if(!boss_bz[0])
+    {
+        fprintf(stderr,"bs0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+   boss_bz[1] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_indra_cross_hurt_center01.png");
+    if(!boss_bz[1])
+    {
+        fprintf(stderr,"bs1:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+   boss_bz[2] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_indra_cross_hurt_center02.png");
+    if(!boss_bz[2])
+    {
+        fprintf(stderr,"bs3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+   boss_bz[3] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_indra_cross_hurt_center03.png");
+    if(!boss_bz[3])
+    {
+        fprintf(stderr,"bs3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+   boss_bz[4] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_indra_cross_hurt_center04.png");
+    if(!boss_bz[4])
+    {
+        fprintf(stderr,"bs4:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+   boss_bz[5] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_indra_cross_hurt_center05.png");
+    if(!boss_bz[5])
+    {
+        fprintf(stderr,"bs5:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+   boss_bz[6] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_indra_cross_hurt_center06.png");
+    if(!boss_bz[6])
+    {
+        fprintf(stderr,"bs6:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+   boss_bz[7] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_indra_cross_hurt_center07.png");
+    if(!boss_bz[7])
+    {
+        fprintf(stderr,"bs7:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+   boss_bz[8] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_indra_cross_hurt_center08.png");
+    if(!boss_bz[8])
+    {
+        fprintf(stderr,"bs8:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+   boss_bz[9] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_indra_cross_hurt_center09.png");
+    if(!boss_bz[9])
+    {
+        fprintf(stderr,"bs9:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+   boss_bz[10] = al_load_bitmap("../startrek/爆炸/boss_bomb/LAZY_LOAD_indra_cross_hurt_center10.png");
+    if(!boss_bz[10])
+    {
+        fprintf(stderr,"bs10:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+
 
 }
 
@@ -264,13 +346,43 @@ int GameInit()
         al_destroy_display(display);
         return -1;
     }
-    buff = al_load_bitmap("../startrek/图片/LAZY_LOAD_equip_empty2.png");
-    if(!pro)
+    //boff
+    buffs[0] = al_load_bitmap("../startrek/buff/territorial_buff06.png");
+    if(!buffs[0])
     {
-        fprintf(stderr,"buff:Failed to load image!");
+        fprintf(stderr,"buff0:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
+    buffs[1] = al_load_bitmap("../startrek/buff/territorial_buff01.png");
+    if(!buffs[1])
+    {
+        fprintf(stderr,"buff1:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    buffs[2] = al_load_bitmap("../startrek/buff/territorial_buff02.png");
+    if(!buffs[2])
+    {
+        fprintf(stderr,"buff2:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    buffs[3] = al_load_bitmap("../startrek/buff/territorial_buff03.png");
+    if(!buffs[3])
+    {
+        fprintf(stderr,"buff3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    buffs[4] = al_load_bitmap("../startrek/buff/territorial_buff04.png");
+    if(!buffs[4])
+    {
+        fprintf(stderr,"buff4:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+
     Baozha();
     if (!al_install_mouse()) {
         fprintf(stderr,"error3:mouse\n");
@@ -296,6 +408,11 @@ int GameInit()
     font[3] = al_load_ttf_font("../startrek/a.ttf",10,0);
     if(!font[3]){
         fprintf(stderr,"error:font3");
+        return -1;
+    }
+    font[4] = al_load_ttf_font("../startrek/a.ttf",12,0);
+    if(!font[4]){
+        fprintf(stderr,"error:font4");
         return -1;
     }
     timer = al_create_timer(1.0/FPS);

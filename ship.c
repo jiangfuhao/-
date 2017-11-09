@@ -11,6 +11,7 @@ int Init_ship(Spaceship *s ,int i)
     s->live=100;
     s->energy=0;
     s->pro=1;
+    s->blast_mode=0;
     }
     else
     {

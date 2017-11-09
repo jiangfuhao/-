@@ -23,7 +23,6 @@ typedef struct {
     float sx;//位置
     float sy;
     float heading;//方向
-
     float twist;//角度
     float speed;//速度
     float rot_velocity; //转速;
@@ -32,10 +31,7 @@ typedef struct {
     int TX; //特效
     int s_time;
     ALLEGRO_COLOR color;
-
-
 }Asteroid;//彗星
-
 struct Blast{
     float sx;
     float sy;
@@ -62,6 +58,7 @@ typedef struct {
     int live;//生命值
     int energy;
     int pro;
+    int blast_mode;
 
 }Spaceship;//飞船
 typedef struct {
@@ -75,7 +72,8 @@ typedef struct {
     int old_blast;
     int time_b;
     int blast_type;//子弹类型
-    int TX;
+    int TX; //特效
+    int s_time;
     BOSS_Blast blast1[BOSSBlast_number];
     BOSS_Blast blast2[BOSSBlast_number];
 }BOSS1;
@@ -93,16 +91,21 @@ typedef struct {
     int s_time;
     int fly_mode;//运动模式
     int ratation;
-    BOSS_Blast blast;
+    int cylinder; //圈数
+
 }XBOSS;
 typedef struct {
-    float sx;
+    float sx;//位置
     float sy;
-    float heading;
+    float heading;//方向
     float twist;//角度
     float speed;//速度
     float rot_velocity; //转速;
-    int kind;
+    float scale;//大小
+    int gone;//是否毁灭
+    int XG; //效果
+    int s_time;
+
 }BUFF;
 ALLEGRO_DISPLAY *display ;
 ALLEGRO_EVENT_QUEUE *event_queue ;
@@ -115,9 +118,10 @@ ALLEGRO_BITMAP *xboss;
 ALLEGRO_BITMAP *setting[6];
 ALLEGRO_BITMAP *baoz[10];
 ALLEGRO_BITMAP *baoz_xb[11];
+ALLEGRO_BITMAP *boss_bz[11];
 ALLEGRO_BITMAP *xb_bl;
 ALLEGRO_BITMAP *pro;// 保护罩
-ALLEGRO_BITMAP *buff;
+ALLEGRO_BITMAP *buffs[6];
 ALLEGRO_BITMAP *boss_blast[5];
 ALLEGRO_EVENT ev;
 
@@ -152,12 +156,12 @@ int Baozha();
 int bomb(Asteroid *c,int time_bomb);
 //子弹
 int Init_Blast(struct Blast* *b);
-int Insert_Blast(struct Blast* *b,Spaceship s);
+int Insert_Blast(struct Blast* *b,Spaceship s,double x,double y,double heading);
 int Delete_Blast(struct Blast* *b,int pos);
 int Draw_Blast(struct Blast* *b,Spaceship s);
 int Scope_Blast(struct Blast* *b,Spaceship s);
 int Move_Blast( struct Blast* *b);
-
+int Blast_mode(struct Blast* *p_blast,Spaceship s);
 int init_xb_blast(BOSS_Blast xb_blast[]);                 //初始xboss子弹
 int lord_xb_blast(XBOSS *xb,BOSS_Blast *xb_blast,Spaceship *s);         //发射子弹
 int Draw_xb_blast(BOSS_Blast xb_blast[]);
@@ -170,7 +174,12 @@ int Draw_xboss(XBOSS *xb,BOSS_Blast *xb_bl,Spaceship *s);
 int hit_ship_xb(Spaceship *s,XBOSS xb[],BOSS_Blast xb_blast[]);
 int judge_xboss(XBOSS xb[]);                              //判断xboss是否全部消失
 int Move_xboss(XBOSS *xb,BOSS_Blast *xb_blast,Spaceship *s);
-
+//buff
+int Init_buff(BUFF *buff);
+int SHIP_buff(Spaceship *ship,BUFF *buff);
+int Draw_buff(BUFF *buff);
+int move_buff(BUFF *buff);
+int Scope_buff(BUFF *buff);
 #define black     al_map_rgb(0,0,0)       //黑色
 #define green     al_map_rgb(0,255,0)   //绿色
 #define yellow    al_map_rgb(255,255,0)     //黄色
