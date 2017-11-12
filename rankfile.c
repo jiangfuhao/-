@@ -38,6 +38,9 @@ void Init_file(int grade)
 
 void gamegrade(int grade)
 {
+     //al_destroy_sample(sample[0]);
+     //al_destroy_sample(sample[1]);
+     //al_destroy_sample(sample[2]);
     int n=0;
     int q=1;
     int redraw2 = 1;
@@ -145,7 +148,6 @@ void gamegrade(int grade)
             case 0:
                 if(q==1){
                     al_draw_text(font[1],white,DISPLAY_W/2-350,DISPLAY_H/2+150,ALLEGRO_ALIGN_CENTRE,"返回");
-
                 }
                 al_flip_display();
                 break;

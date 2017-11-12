@@ -113,7 +113,7 @@ ALLEGRO_TIMER *timer ;
 ALLEGRO_TRANSFORM transform;
 ALLEGRO_FONT *font[5];
 
-ALLEGRO_SAMPLE *sample[10];
+ALLEGRO_SAMPLE *sample[8];
 ALLEGRO_BITMAP *xboss;
 ALLEGRO_BITMAP *setting[6];
 ALLEGRO_BITMAP *baoz[10];
@@ -124,7 +124,7 @@ ALLEGRO_BITMAP *pro;// 保护罩
 ALLEGRO_BITMAP *buffs[6];
 ALLEGRO_BITMAP *boss_blast[5];
 ALLEGRO_BITMAP *photo[5];
-//ALLEGRO_BITMAP *pro;// 保护罩
+ALLEGRO_BITMAP *kaichang[145];
 ALLEGRO_BITMAP *buff;
 ALLEGRO_EVENT ev;
 
@@ -136,7 +136,9 @@ int Scope_star(Asteroid *c);
 int hit_star(Asteroid comet[],int *time_star1,Spaceship *ship);
 
 //初始化
-int GameInit();
+int GameInit(int i);
+int Music_init();
+int Start_imge();
 //战机函数
 int Ship_grade(int grade);
 int Init_ship(Spaceship *s ,int i);

@@ -24,9 +24,10 @@ enum MYKEYS {
 int Init_screen()
 {
 
+
     music_game(1,1.0);
     int w=100;
-    //bool key[4]={false, false, false,false};
+
     int redraw = 1;
     int choose=1;
 
@@ -103,7 +104,7 @@ int Init_screen()
             al_draw_bitmap(setting[1],0,0,0);
             switch (decision) {
 loop:case 0:
-                al_draw_text(font[4],blu,60,15,ALLEGRO_ALIGN_CENTRE,"版本：startrek-0.7.1");
+                al_draw_text(font[4],blu,60,15,ALLEGRO_ALIGN_CENTRE,"版本：startrek-0.8.1");
                 al_draw_text(font[0],blu,DISPLAY_W/2,0,ALLEGRO_ALIGN_CENTRE,"爆破彗星");
                 if(choose==1)
                 {
@@ -276,7 +277,7 @@ loop:case 0:
             case 4:
                 exit(0);
             default:
-                al_destroy_sample(sample[0]);
+                al_destroy_sample(sample[1]);
                 return 0;
             }
 
@@ -295,14 +296,43 @@ loop:case 0:
 
 int main(void)
 {
+    int o_or_c_start=0;
+
     while(1)
     {
+        GameInit(o_or_c_start);
+        Music_init();
+        if(o_or_c_start==0)
+        {
+            int x=115;
+            int y=0;
+           // GameInit(1);
+
+            while(x!=-1)
+            {
+
+                if(x==35)
+                {
+                    music_game(0,0);
+                }
+
+                al_draw_bitmap(kaichang[x],0,0,0);
+                al_flip_display();
+
+                if(y==5)
+                {
+                    x--;
+                    y=0;
+                }
+                y++;
+
+            }
+            o_or_c_start=1;
+        }
         int result = 0;
-
-
-        GameInit();
-
+        //Music_init();
         Init_screen();
+
 
         bool redraw = true;
         bool key[10] = {false, false, false, false,false,false, false, false, false,false};
@@ -325,20 +355,13 @@ int main(void)
         Init_ship(&ship[0],1); //飞船初始
         //子弹定义
         p_blast=&ship_blast;
-        //blast_head=&ship_blast;
         Init_Blast(&p_blast);
-
-        //   p_blast=p_blast->next;
-
         blast_h=p_blast;
-        // int time_star2=0;
-        // int time_map=0;
-        music_game(2,1.0);
+
+        music_game(2,1.0);   //音乐
+
         while(decision==2)
         {
-
-
-
             al_wait_for_event(event_queue, &ev);
 
             if(ev.type == ALLEGRO_EVENT_TIMER) {
@@ -498,10 +521,13 @@ int main(void)
                 map_game(&map_h);
                 map_h++;
                 Ship_grade(grade);
-                if(grade==500&&boss_out==0)
+                if(grade>=100&&boss_out==0)
                 {
+
                     boss_out=1;
                     init_boss(&boss);
+
+                    //music_game(3,0);
                 }
                 if(grade!=0&&grade%5==0&&xboss_out==0)
                 {
@@ -527,10 +553,10 @@ int main(void)
 
                     if(boss.live<0&&boss.TX!=0)
                     {
-
+                        //music_game(2,0);
                         grade=grade+100;
                         boss.gone=1;
-                        boss_out=0;
+                        //boss_out=0;
 
 
                     }
@@ -645,7 +671,7 @@ int main(void)
                 bt=1;
                 if(ship[0].pro==1)
                 {
-                    if(time_pro==1000)
+                    if(time_pro==500)
                     {
                         ship[0].pro=0;
                         time_pro=0;
@@ -664,14 +690,17 @@ int main(void)
         gamegrade(grade);
         result = 1;
         if(result==1){
-            free(p_blast);
-            al_destroy_timer(timer);
-            al_destroy_display(display);
-            al_destroy_event_queue(event_queue);
+            al_destroy_sample(sample[0]);
+             al_destroy_sample(sample[2]);
+             al_destroy_timer(timer);
+             al_destroy_display(display);
+             al_destroy_event_queue(event_queue);
             decision = 0;
             grade =  0;
             continue;
 
         }
     }
+
+
 }

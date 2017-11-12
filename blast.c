@@ -18,18 +18,18 @@ int Blast_mode(struct Blast* *p_blast,Spaceship s)   //飞机子弹种类
     }
     else if(s.blast_mode==2)
     {
-        double x=20;
+        //double x=20;
         double y=0;
-        double j=0;
-        double heading=0.8;
+        //double j=0;
+        double heading=0.4;
         for(int i=0;i<5;i++)
         {
 
-            Insert_Blast(p_blast,s,x,y,heading);
-            x=x-10;
-            heading=heading-0.4;
+            Insert_Blast(p_blast,s,0,y,heading);
+            //x=x-10;
+            heading=heading-0.2;
 
-            if(i==2)
+           /* if(i==2)
             {
                 j=1;
             }
@@ -38,7 +38,7 @@ int Blast_mode(struct Blast* *p_blast,Spaceship s)   //飞机子弹种类
                 y=y+10;
             }else{
                 y=y-10;
-            }
+            }*/
         }
     }
     else{

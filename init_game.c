@@ -226,15 +226,832 @@ int Baozha()
 
 
 }
-
-int GameInit()
+int Start_imge()
 {
 
-
-    if(!al_init()) {
-        fprintf(stderr,"error1:have not allegro\n");
+    kaichang[0] = al_load_bitmap("../startrek/开场/0.png");
+    if(!kaichang[0])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
         return -1;
     }
+    kaichang[1] = al_load_bitmap("../startrek/开场/1.png");
+    if(!kaichang[1])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[2] = al_load_bitmap("../startrek/开场/2.png");
+    if(!kaichang[2])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[3] = al_load_bitmap("../startrek/开场/3.png");
+    if(!kaichang[3])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[4] = al_load_bitmap("../startrek/开场/4.png");
+    if(!kaichang[4])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[5] = al_load_bitmap("../startrek/开场/5.png");
+    if(!kaichang[5])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[6] = al_load_bitmap("../startrek/开场/6.png");
+    if(!kaichang[6])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[7] = al_load_bitmap("../startrek/开场/7.png");
+    if(!kaichang[7])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[8] = al_load_bitmap("../startrek/开场/8.png");
+    if(!kaichang[8])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[9] = al_load_bitmap("../startrek/开场/9.png");
+    if(!kaichang[9])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[10] = al_load_bitmap("../startrek/开场/10.png");
+    if(!kaichang[10])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[11] = al_load_bitmap("../startrek/开场/11.png");
+    if(!kaichang[11])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[12] = al_load_bitmap("../startrek/开场/12.png");
+    if(!kaichang[12])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[13] = al_load_bitmap("../startrek/开场/13.png");
+    if(!kaichang[13])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[14] = al_load_bitmap("../startrek/开场/14.png");
+    if(!kaichang[14])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[15] = al_load_bitmap("../startrek/开场/15.png");
+    if(!kaichang[15])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[16] = al_load_bitmap("../startrek/开场/16.png");
+    if(!kaichang[16])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[17] = al_load_bitmap("../startrek/开场/17.png");
+    if(!kaichang[17])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[18] = al_load_bitmap("../startrek/开场/18.png");
+    if(!kaichang[18])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[19] = al_load_bitmap("../startrek/开场/19.png");
+    if(!kaichang[19])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[20] = al_load_bitmap("../startrek/开场/20.png");
+    if(!kaichang[20])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[21] = al_load_bitmap("../startrek/开场/21.png");
+    if(!kaichang[21])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[22] = al_load_bitmap("../startrek/开场/22.png");
+    if(!kaichang[22])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[23] = al_load_bitmap("../startrek/开场/23.png");
+    if(!kaichang[23])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[24] = al_load_bitmap("../startrek/开场/24.png");
+    if(!kaichang[24])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[25] = al_load_bitmap("../startrek/开场/25.png");
+    if(!kaichang[25])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[26] = al_load_bitmap("../startrek/开场/26.png");
+    if(!kaichang[26])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[27] = al_load_bitmap("../startrek/开场/27.png");
+    if(!kaichang[27])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[28] = al_load_bitmap("../startrek/开场/28.png");
+    if(!kaichang[28])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[29] = al_load_bitmap("../startrek/开场/29.png");
+    if(!kaichang[29])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[30] = al_load_bitmap("../startrek/开场/30.png");
+    if(!kaichang[30])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[31] = al_load_bitmap("../startrek/开场/31.png");
+    if(!kaichang[31])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+
+    kaichang[32] = al_load_bitmap("../startrek/开场/32.png");
+    if(!kaichang[32])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[33] = al_load_bitmap("../startrek/开场/33.png");
+    if(!kaichang[33])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[34] = al_load_bitmap("../startrek/开场/34.png");
+    if(!kaichang[34])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[35] = al_load_bitmap("../startrek/开场/35.png");
+    if(!kaichang[35])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[36] = al_load_bitmap("../startrek/开场/36.png");
+    if(!kaichang[36])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[37] = al_load_bitmap("../startrek/开场/37.png");
+    if(!kaichang[37])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[38] = al_load_bitmap("../startrek/开场/38.png");
+    if(!kaichang[38])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[39] = al_load_bitmap("../startrek/开场/39.png");
+    if(!kaichang[39])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[40] = al_load_bitmap("../startrek/开场/40.png");
+    if(!kaichang[40])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[41] = al_load_bitmap("../startrek/开场/41.png");
+    if(!kaichang[41])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[42] = al_load_bitmap("../startrek/开场/42.png");
+    if(!kaichang[42])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[43] = al_load_bitmap("../startrek/开场/43.png");
+    if(!kaichang[43])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[44] = al_load_bitmap("../startrek/开场/44.png");
+    if(!kaichang[44])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[45] = al_load_bitmap("../startrek/开场/45.png");
+    if(!kaichang[45])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[46] = al_load_bitmap("../startrek/开场/46.png");
+    if(!kaichang[46])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[47] = al_load_bitmap("../startrek/开场/47.png");
+    if(!kaichang[47])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[48] = al_load_bitmap("../startrek/开场/48.png");
+    if(!kaichang[48])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[49] = al_load_bitmap("../startrek/开场/49.png");
+    if(!kaichang[49])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[50] = al_load_bitmap("../startrek/开场/50.png");
+    if(!kaichang[50])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[51] = al_load_bitmap("../startrek/开场/51.png");
+    if(!kaichang[51])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[52] = al_load_bitmap("../startrek/开场/52.png");
+    if(!kaichang[52])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[53] = al_load_bitmap("../startrek/开场/53.png");
+    if(!kaichang[53])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[54] = al_load_bitmap("../startrek/开场/54.png");
+    if(!kaichang[54])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[55] = al_load_bitmap("../startrek/开场/55.png");
+    if(!kaichang[55])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[56] = al_load_bitmap("../startrek/开场/56.png");
+    if(!kaichang[56])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[57] = al_load_bitmap("../startrek/开场/57.png");
+    if(!kaichang[57])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[58] = al_load_bitmap("../startrek/开场/58.png");
+    if(!kaichang[58])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[59] = al_load_bitmap("../startrek/开场/59.png");
+    if(!kaichang[59])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[60] = al_load_bitmap("../startrek/开场/60.png");
+    if(!kaichang[60])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[61] = al_load_bitmap("../startrek/开场/61.png");
+    if(!kaichang[61])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+
+    kaichang[62] = al_load_bitmap("../startrek/开场/62.png");
+    if(!kaichang[62])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[63] = al_load_bitmap("../startrek/开场/63.png");
+    if(!kaichang[63])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[64] = al_load_bitmap("../startrek/开场/64.png");
+    if(!kaichang[64])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[65] = al_load_bitmap("../startrek/开场/65.png");
+    if(!kaichang[65])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[66] = al_load_bitmap("../startrek/开场/66.png");
+    if(!kaichang[66])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[67] = al_load_bitmap("../startrek/开场/67.png");
+    if(!kaichang[67])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[68] = al_load_bitmap("../startrek/开场/68.png");
+    if(!kaichang[68])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[69] = al_load_bitmap("../startrek/开场/69.png");
+    if(!kaichang[69])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[70] = al_load_bitmap("../startrek/开场/70.png");
+    if(!kaichang[70])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[71] = al_load_bitmap("../startrek/开场/71.png");
+    if(!kaichang[71])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[72] = al_load_bitmap("../startrek/开场/72.png");
+    if(!kaichang[72])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[73] = al_load_bitmap("../startrek/开场/73.png");
+    if(!kaichang[73])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[74] = al_load_bitmap("../startrek/开场/74.png");
+    if(!kaichang[74])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[75] = al_load_bitmap("../startrek/开场/75.png");
+    if(!kaichang[75])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[76] = al_load_bitmap("../startrek/开场/76.png");
+    if(!kaichang[76])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[77] = al_load_bitmap("../startrek/开场/77.png");
+    if(!kaichang[77])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[78] = al_load_bitmap("../startrek/开场/78.png");
+    if(!kaichang[78])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[79] = al_load_bitmap("../startrek/开场/79.png");
+    if(!kaichang[79])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[80] = al_load_bitmap("../startrek/开场/80.png");
+    if(!kaichang[80])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[81] = al_load_bitmap("../startrek/开场/81.png");
+    if(!kaichang[81])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[82] = al_load_bitmap("../startrek/开场/82.png");
+    if(!kaichang[82])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[83] = al_load_bitmap("../startrek/开场/83.png");
+    if(!kaichang[83])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+
+    kaichang[84] = al_load_bitmap("../startrek/开场/84.png");
+    if(!kaichang[84])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[85] = al_load_bitmap("../startrek/开场/85.png");
+    if(!kaichang[85])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[86] = al_load_bitmap("../startrek/开场/86.png");
+    if(!kaichang[86])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[87] = al_load_bitmap("../startrek/开场/87.png");
+    if(!kaichang[87])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[88] = al_load_bitmap("../startrek/开场/88.png");
+    if(!kaichang[88])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[89] = al_load_bitmap("../startrek/开场/89.png");
+    if(!kaichang[89])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[90] = al_load_bitmap("../startrek/开场/90.png");
+    if(!kaichang[90])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[91] = al_load_bitmap("../startrek/开场/91.png");
+    if(!kaichang[91])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+
+    kaichang[92] = al_load_bitmap("../startrek/开场/92.png");
+    if(!kaichang[92])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[93] = al_load_bitmap("../startrek/开场/93.png");
+    if(!kaichang[93])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[94] = al_load_bitmap("../startrek/开场/94.png");
+    if(!kaichang[94])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[95] = al_load_bitmap("../startrek/开场/95.png");
+    if(!kaichang[95])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[96] = al_load_bitmap("../startrek/开场/96.png");
+    if(!kaichang[96])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[97] = al_load_bitmap("../startrek/开场/97.png");
+    if(!kaichang[97])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[98] = al_load_bitmap("../startrek/开场/98.png");
+    if(!kaichang[98])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[99] = al_load_bitmap("../startrek/开场/99.png");
+    if(!kaichang[99])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[100] = al_load_bitmap("../startrek/开场/100.png");
+    if(!kaichang[100])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+
+    kaichang[101] = al_load_bitmap("../startrek/开场/101.png");
+    if(!kaichang[101])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[102] = al_load_bitmap("../startrek/开场/102.png");
+    if(!kaichang[102])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[103] = al_load_bitmap("../startrek/开场/103.png");
+    if(!kaichang[103])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[104] = al_load_bitmap("../startrek/开场/104.png");
+    if(!kaichang[104])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[105] = al_load_bitmap("../startrek/开场/105.png");
+    if(!kaichang[105])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[106] = al_load_bitmap("../startrek/开场/106.png");
+    if(!kaichang[106])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[107] = al_load_bitmap("../startrek/开场/107.png");
+    if(!kaichang[107])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[108] = al_load_bitmap("../startrek/开场/108.png");
+    if(!kaichang[108])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[109] = al_load_bitmap("../startrek/开场/109.png");
+    if(!kaichang[109])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[110] = al_load_bitmap("../startrek/开场/110.png");
+    if(!kaichang[110])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[111] = al_load_bitmap("../startrek/开场/111.png");
+    if(!kaichang[111])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[112] = al_load_bitmap("../startrek/开场/112.png");
+    if(!kaichang[112])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[113] = al_load_bitmap("../startrek/开场/113.png");
+    if(!kaichang[113])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[114] = al_load_bitmap("../startrek/开场/114.png");
+    if(!kaichang[114])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    kaichang[115] = al_load_bitmap("../startrek/开场/115.png");
+    if(!kaichang[115])
+    {
+        fprintf(stderr,"kai0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+
+
+
+}
+int Music_init()
+{
     //初始化音频系统
     if(!al_install_audio()){
        fprintf(stderr, "failed to initialize audio!\n");
@@ -249,22 +1066,50 @@ int GameInit()
        fprintf(stderr, "failed to reserve samples!\n");
        return -1;
     }
-    //音频文件载入
-    sample[0] = al_load_sample("../startrek/音乐素材/GE2_LoadingAnimation.wav");
+
+    sample[0] = al_load_sample("../startrek/音乐素材/73590.wav");
     if (!sample[0]){
        fprintf(stderr, "0:Audio clip sample not loaded!\n" );
        return -1;
     }
-    sample[1] = al_load_sample("../startrek/音乐素材/GE2_Battle.wav");
+
+    sample[1] = al_load_sample("../startrek/音乐素材/2134.wav");
     if (!sample[1]){
        fprintf(stderr, "1:Audio clip sample not loaded!\n" );
        return -1;
     }
-    sample[2] = al_load_sample("../startrek/音乐素材/sfx_weapon_snowball_impact.wav");
+    sample[2] = al_load_sample("../startrek/音乐素材/2133.wav");
     if (!sample[2]){
        fprintf(stderr, "2:Audio clip sample not loaded!\n" );
        return -1;
     }
+    sample[3] = al_load_sample("../startrek/音乐素材/2132.wav");
+    if (!sample[3]){
+       fprintf(stderr, "3:Audio clip sample not loaded!\n" );
+       return -1;
+    }
+    sample[4] = al_load_sample("../startrek/音乐素材/GE2_BattleLose.wav");
+    if (!sample[4]){
+       fprintf(stderr, "4:Audio clip sample not loaded!\n" );
+       return -1;
+    }
+    sample[5] = al_load_sample("../startrek/音乐素材/GE2_BattleMap.wav");
+    if (!sample[5]){
+       fprintf(stderr, "5:Audio clip sample not loaded!\n" );
+       return -1;
+    }
+
+}
+
+int GameInit(int i)
+{
+
+    if(!al_init()) {
+        fprintf(stderr,"error1:have not allegro\n");
+        return -1;
+    }
+
+    //
     if (!al_install_keyboard()) {
         fprintf(stderr,"error2:Key\n");
         return -1;
@@ -274,32 +1119,36 @@ int GameInit()
         fprintf(stderr, "failed to initialize image addon!\n");
        return -1;
     }
-    photo[0] = al_load_bitmap("../startrek/photo1.png");
+    if(i==0)
+    {
+        Start_imge();      //开场动漫
+    }
+    photo[0] = al_load_bitmap("../startrek/图片/photo1.png");
     if(!photo[0])
     {
-        fprintf(stderr,"0:Failed to load image!");
+        fprintf(stderr,"ph0:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
-    photo[1] = al_load_bitmap("../startrek/photo2.png");
+    photo[1] = al_load_bitmap("../startrek/图片/photo2.png");
     if(!photo[1])
     {
-        fprintf(stderr,"0:Failed to load image!");
+        fprintf(stderr,"ph1:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
-    photo[2] = al_load_bitmap("../startrek/photo3.png");
+    photo[2] = al_load_bitmap("../startrek/图片/photo3.png");
     if(!photo[2])
     {
-        fprintf(stderr,"0:Failed to load image!");
+        fprintf(stderr,"ph2:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
 
-    photo[3] = al_load_bitmap("../startrek/photo4.png");
+    photo[3] = al_load_bitmap("../startrek/图片/photo4.png");
     if(!photo[2])
     {
-        fprintf(stderr,"0:Failed to load image!");
+        fprintf(stderr,"ph3:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
@@ -311,49 +1160,49 @@ int GameInit()
         al_destroy_display(display);
         return -1;
     }
-    setting[1] = al_load_bitmap("../startrek/2620808089223323183.jpg");
+    setting[1] = al_load_bitmap("../startrek/beijing.jpeg");
     if(!setting[1])
     {
         fprintf(stderr,"1:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
-    setting[2] = al_load_bitmap("../startrek/1 (151).png");
+    setting[2] = al_load_bitmap("../startrek/敌机/1 (151).png");
     if(!setting[2])
     {
         fprintf(stderr,"2:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
-    setting[3] = al_load_bitmap("../startrek/第一关.png");
+    setting[3] = al_load_bitmap("../startrek/map/第一关.png");
     if(!setting[3])
     {
         fprintf(stderr,"3:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
-    setting[4] = al_load_bitmap("../startrek/bullet_06_01.png");
+    setting[4] = al_load_bitmap("../startrek/子弹/bullet_06_01.png");
     if(!setting[4])
     {
         fprintf(stderr,"4:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
-    setting[5] = al_load_bitmap("../startrek/1 (81).png");
+    setting[5] = al_load_bitmap("../startrek/boss/1 (81).png");
     if(!setting[5])
     {
-        fprintf(stderr,"5:Failed to load image!");
+        fprintf(stderr,"seting5:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
-    xboss = al_load_bitmap("../startrek/1 (75).png");
+    xboss = al_load_bitmap("../startrek/敌机/1 (75).png");
     if(!xboss)
     {
         fprintf(stderr,"xboss:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
-    pro = al_load_bitmap("../startrek/witch_cast_03.png");
+    pro = al_load_bitmap("../startrek/图片/witch_cast_02.png");
     if(!pro)
     {
         fprintf(stderr,"pro:Failed to load image!");
@@ -361,14 +1210,14 @@ int GameInit()
         return -1;
     }
 
-    boss_blast[0] = al_load_bitmap("../startrek/bullet_07_01.png");
+    boss_blast[0] = al_load_bitmap("../startrek/子弹/bullet_07_01.png");
     if(!boss_blast[0])
     {
         fprintf(stderr,"boss_blast0:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
-    xb_bl = al_load_bitmap("../startrek/bullet_01_03.png");
+    xb_bl = al_load_bitmap("../startrek/子弹/bullet_01_03.png");
     if(!xb_bl)
     {
         fprintf(stderr,"xb_bl:Failed to load image!");
