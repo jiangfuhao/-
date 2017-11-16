@@ -45,7 +45,7 @@ void gamegrade(int grade)
     int q=1;
     int redraw2 = 1;
 
-    al_clear_to_color(al_map_rgb(255,155,155));
+
     al_flip_display();
     Init_file(grade);
 

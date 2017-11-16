@@ -22,9 +22,9 @@ int SHIP_buff(Spaceship *ship,BUFF *buff)
         Draw_buff(buff);
         move_buff(buff);
         Scope_buff(buff);
-        if(ship->sx<=buff->sx+25&&ship->sx>=buff->sx-25) //彗星撞飞船
+        if(ship->sx-27<=buff->sx+25&&ship->sx-27>=buff->sx-25) //彗星撞飞船
         {
-            if (ship->sy<=buff->sy+25&&ship->sy>=buff->sy-25)
+            if (ship->sy-20<=buff->sy+25&&ship->sy-20>=buff->sy-25)
             {
                 buff_XG(ship,buff);
                 buff->gone=1;

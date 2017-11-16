@@ -58,6 +58,7 @@ int Insert_Blast(struct Blast* *b,Spaceship s,double x,double y,double heading)
 
     tail->sx = s.sx+x;
     tail->sy = s.sy+y;
+    tail->type=s.blast_mode;
     tail->heading = s.heading + heading;
     tail->speed = s.speed*3;
     tail->color = al_map_rgb(255,255,255);
@@ -113,15 +114,26 @@ int Draw_Blast(struct Blast* *b,Spaceship s)
     al_rotate_transform(&transform,(*b)->heading);
     al_translate_transform(&transform,(*b)->sx,(*b)->sy);
     al_use_transform(&transform);
-    //al_draw_filled_rectangle(-3,-15,2,-5,(*b)->color);
-    al_draw_bitmap(setting[4],8.5,-25,0);
+
+    if((*b)->type==1)
+    {
+        al_draw_bitmap(blast_ship[0],7.5,-45,0);
+    }else if((*b)->type==2)
+    {
+        al_draw_bitmap(blast_ship[1],7.5,-45,0);
+    }else
+    {
+        al_draw_bitmap(blast_ship[2],9,-45,0);
+
+    }
+
     return 0;
 }
 int Move_Blast( struct Blast* *b)
 {
 
-    (*b)->sx += (*b)->speed * sin((*b)->heading)*10;
-    (*b)->sy -= (*b)->speed * cos((*b)->heading)*10;
+    (*b)->sx += (*b)->speed * sin((*b)->heading)*5;
+    (*b)->sy -= (*b)->speed * cos((*b)->heading)*5;
 
     return 0;
 
@@ -224,9 +236,9 @@ int xb_bhit_star(BOSS_Blast xb_blast[],Spaceship *s)
     {
         if(xb_blast[i].gone==1)
         {
-            if(xb_blast[i].sx>s->sx-35&&xb_blast[i].sx<=s->sx+35)
+            if(xb_blast[i].sx>s->sx-30&&xb_blast[i].sx<=s->sx+30)
             {
-                if(xb_blast[i].sy>s->sy-37&&xb_blast[i].sy<=s->sy+37)
+                if(xb_blast[i].sy>s->sy-30&&xb_blast[i].sy<=s->sy+30)
                 {
                     if(s->pro==0)
                     {

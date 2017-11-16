@@ -1050,6 +1050,199 @@ int Start_imge()
 
 
 }
+int Ship_blast()
+{
+
+
+    blast_ship[0] = al_load_bitmap("../startrek/子弹/bullet_07_02.png");
+    if(!blast_ship[0])
+    {
+        fprintf(stderr,"blast_ship0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+    blast_ship[1] = al_load_bitmap("../startrek/子弹/bullet_01_01.png");
+    if(!blast_ship[1])
+    {
+        fprintf(stderr,"blast_ship1:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+    blast_ship[2] = al_load_bitmap("../startrek/子弹/bullet_01_02.png");
+    if(!blast_ship[2])
+    {
+        fprintf(stderr,"blast_ship2:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+    blast_ship[3] = al_load_bitmap("../startrek/子弹/laser_01.png");
+    if(!blast_ship[3])
+    {
+        fprintf(stderr,"blast_ship3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+
+    xb_bl = al_load_bitmap("../startrek/子弹/bullet_01_03.png");
+    if(!xb_bl)
+    {
+        fprintf(stderr,"xb_bl:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+}
+int BIG_blast()
+{
+    big_blast[0] = al_load_bitmap("../startrek/大招/0.png");
+    if(!big_blast[0])
+    {
+        fprintf(stderr,"big_blast0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+    big_blast[1] = al_load_bitmap("../startrek/大招/1.png");
+    if(!big_blast[1])
+    {
+        fprintf(stderr,"big_blast1:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+    big_blast[2] = al_load_bitmap("../startrek/大招/2.png");
+    if(!big_blast[2])
+    {
+        fprintf(stderr,"big_blast2:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+    big_blast[3] = al_load_bitmap("../startrek/大招/3.png");
+    if(!big_blast[3])
+    {
+        fprintf(stderr,"big_blast3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+    big_blast[4] = al_load_bitmap("../startrek/大招/4.png");
+    if(!big_blast[4])
+    {
+        fprintf(stderr,"big_blast4:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+    big_blast[5] = al_load_bitmap("../startrek/大招/7.png");
+    if(!big_blast[5])
+    {
+        fprintf(stderr,"big_blast5:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+    big_blast[6] = al_load_bitmap("../startrek/大招/8.png");
+    if(!big_blast[6])
+    {
+        fprintf(stderr,"big_blast6:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+    big_blast[7] = al_load_bitmap("../startrek/大招/9.png");
+    if(!big_blast[7])
+    {
+        fprintf(stderr,"big_blast7:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+    big_blast[8] = al_load_bitmap("../startrek/大招/10.png");
+    if(!big_blast[8])
+    {
+        fprintf(stderr,"big_blast8:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+    big_blast[9] = al_load_bitmap("../startrek/大招/11.png");
+    if(!big_blast[9])
+    {
+        fprintf(stderr,"big_blast9:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+    big_blast[10] = al_load_bitmap("../startrek/大招/12.png");
+    if(!big_blast[10])
+    {
+        fprintf(stderr,"big_blast10:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+    big_blast[11] = al_load_bitmap("../startrek/大招/13.png");
+    if(!big_blast[11])
+    {
+        fprintf(stderr,"big_blast11:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+    big_blast[12] = al_load_bitmap("../startrek/大招/14.png");
+    if(!big_blast[12])
+    {
+        fprintf(stderr,"big_blast12:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+    big_blast[13] = al_load_bitmap("../startrek/大招/15.png");
+    if(!big_blast[13])
+    {
+        fprintf(stderr,"big_blast13:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+    big_blast[14] = al_load_bitmap("../startrek/大招/16.png");
+    if(!big_blast[14])
+    {
+        fprintf(stderr,"big_blast14:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+    big_blast[15] = al_load_bitmap("../startrek/大招/17.png");
+    if(!big_blast[15])
+    {
+        fprintf(stderr,"big_blast15:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+    big_blast[16] = al_load_bitmap("../startrek/大招/18.png");
+    if(!big_blast[16])
+    {
+        fprintf(stderr,"big_blast16:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+    big_blast[17] = al_load_bitmap("../startrek/大招/19.png");
+    if(!big_blast[17])
+    {
+        fprintf(stderr,"big_blast17:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+
+    }
+}
+
 int Music_init()
 {
     //初始化音频系统
@@ -1093,12 +1286,95 @@ int Music_init()
        fprintf(stderr, "4:Audio clip sample not loaded!\n" );
        return -1;
     }
-    sample[5] = al_load_sample("../startrek/音乐素材/GE2_BattleMap.wav");
+    sample[5] = al_load_sample("../startrek/音乐素材/big.wav");
     if (!sample[5]){
        fprintf(stderr, "5:Audio clip sample not loaded!\n" );
        return -1;
     }
 
+}
+int Ship_Image()
+{
+    ship_imge[0] = al_load_bitmap("../startrek/ship/1509544151865.png");
+    if(!ship_imge[0])
+    {
+        fprintf(stderr,"ship_imge0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    ship_imge[1] = al_load_bitmap("../startrek/ship/1509544150965.png");
+    if(!ship_imge[1])
+    {
+        fprintf(stderr,"ship_imge1:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    ship_imge[2] = al_load_bitmap("../startrek/ship/1509544152793.png");
+    if(!ship_imge[2])
+    {
+        fprintf(stderr,"ship_imge2:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    ship_imge[3] = al_load_bitmap("../startrek/ship/1.png");
+    if(!ship_imge[3])
+    {
+        fprintf(stderr,"ship_imge0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    ship_imge[4] = al_load_bitmap("../startrek/ship/2.png");
+    if(!ship_imge[4])
+    {
+        fprintf(stderr,"ship_imge1:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    ship_imge[5] = al_load_bitmap("../startrek/ship/3.png");
+    if(!ship_imge[5])
+    {
+        fprintf(stderr,"ship_imge2:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+}
+int Boss_image()
+{
+    boss_image[0] = al_load_bitmap("../startrek/boss/1 (81).png");
+    if(!boss_image[0])
+    {
+        fprintf(stderr,"boss0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    boss_image[1] = al_load_bitmap("../startrek/boss/1 (11).png");
+    if(!boss_image[1])
+    {
+        fprintf(stderr,"boss1:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    boss_image[2] = al_load_bitmap("../startrek/boss/1 (143).png");
+    if(!boss_image[2])
+    {
+        fprintf(stderr,"boss2:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    boss_blast[0] = al_load_bitmap("../startrek/子弹/bullet_07_01.png");
+    if(!boss_blast[0])
+    {
+        fprintf(stderr,"boss_blast0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    boss_blast[1] = al_load_bitmap("../startrek/子弹/bullet_06_02.png");
+    if(!boss_blast[1])
+    {
+        fprintf(stderr,"boss_blast0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
 }
 
 int GameInit(int i)
@@ -1118,6 +1394,23 @@ int GameInit(int i)
     if(!al_init_image_addon()) {
         fprintf(stderr, "failed to initialize image addon!\n");
        return -1;
+    }
+    Ship_Image();
+    Ship_blast();
+    BIG_blast();
+    xuan[0] = al_load_bitmap("../startrek/图片/wd_flag_frame.png");
+    if(!xuan[0])
+    {
+        fprintf(stderr,"xuan0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    xuan[1] = al_load_bitmap("../startrek/图片/yellow_icon_001.png");
+    if(!xuan[0])
+    {
+        fprintf(stderr,"xuan0:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
     }
     if(i==0)
     {
@@ -1153,50 +1446,39 @@ int GameInit(int i)
         return -1;
     }
 
-    setting[0] = al_load_bitmap("../startrek/1509544151865.png");
+
+    setting[0] = al_load_bitmap("../startrek/beijing.jpeg");
     if(!setting[0])
-    {
-        fprintf(stderr,"0:Failed to load image!");
-        al_destroy_display(display);
-        return -1;
-    }
-    setting[1] = al_load_bitmap("../startrek/beijing.jpeg");
-    if(!setting[1])
     {
         fprintf(stderr,"1:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
-    setting[2] = al_load_bitmap("../startrek/敌机/1 (151).png");
-    if(!setting[2])
+    setting[1] = al_load_bitmap("../startrek/敌机/1 (151).png");
+    if(!setting[1])
     {
         fprintf(stderr,"2:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
-    setting[3] = al_load_bitmap("../startrek/map/第一关.png");
-    if(!setting[3])
+    setting[2] = al_load_bitmap("../startrek/map/第一关.png");
+    if(!setting[2])
     {
         fprintf(stderr,"3:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
-    setting[4] = al_load_bitmap("../startrek/子弹/bullet_06_01.png");
-    if(!setting[4])
+
+    Boss_image();
+    xboss[0] = al_load_bitmap("../startrek/敌机/1 (75).png");
+    if(!xboss[0])
     {
-        fprintf(stderr,"4:Failed to load image!");
+        fprintf(stderr,"xboss:Failed to load image!");
         al_destroy_display(display);
         return -1;
     }
-    setting[5] = al_load_bitmap("../startrek/boss/1 (81).png");
-    if(!setting[5])
-    {
-        fprintf(stderr,"seting5:Failed to load image!");
-        al_destroy_display(display);
-        return -1;
-    }
-    xboss = al_load_bitmap("../startrek/敌机/1 (75).png");
-    if(!xboss)
+    xboss[1] = al_load_bitmap("../startrek/敌机/1 (39).png");
+    if(!xboss[1])
     {
         fprintf(stderr,"xboss:Failed to load image!");
         al_destroy_display(display);
@@ -1210,21 +1492,9 @@ int GameInit(int i)
         return -1;
     }
 
-    boss_blast[0] = al_load_bitmap("../startrek/子弹/bullet_07_01.png");
-    if(!boss_blast[0])
-    {
-        fprintf(stderr,"boss_blast0:Failed to load image!");
-        al_destroy_display(display);
-        return -1;
-    }
-    xb_bl = al_load_bitmap("../startrek/子弹/bullet_01_03.png");
-    if(!xb_bl)
-    {
-        fprintf(stderr,"xb_bl:Failed to load image!");
-        al_destroy_display(display);
-        return -1;
-    }
-    //boff
+
+
+    //buff
     buffs[0] = al_load_bitmap("../startrek/buff/territorial_buff06.png");
     if(!buffs[0])
     {

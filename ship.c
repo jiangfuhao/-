@@ -1,25 +1,18 @@
 #include"game.h"
 int Init_ship(Spaceship *s ,int i)
 {
-    if(i==1)
-    {
     s->sx = DISPLAY_W /2.0 ;
     s->sy = DISPLAY_H / 2.0 ;
     s->gone = false;
     s->heading=0;
-    s->speed=0.5;
+    s->speed=1;
     s->live=100;
-    s->energy=0;
+    s->energy=100;
     s->blast_mode=0;
     s->pro=1;
-    }
-    else
-    {
-        s->sx = 10 ;
-        s->sy = DISPLAY_H / 2.0 ;
-        s->gone = false;
-        s->heading= 1;
-    }
+    s->type=i;
+    s->yORn=0;
+    s->TX=18;
     return 0;
 }
 int Draw_ship(Spaceship *s)
@@ -29,7 +22,7 @@ int Draw_ship(Spaceship *s)
     al_rotate_transform(&transform,s->heading);
     al_translate_transform(&transform,s->sx,s->sy);
     al_use_transform(&transform);
-    al_draw_bitmap(setting[0],-35,-30,0);
+    al_draw_bitmap(ship_imge[s->type],-27,-20,0);
     if(s->pro==1)
     {
         al_draw_bitmap(pro,-40,-40,0);
@@ -88,6 +81,56 @@ int Scope_ship(Spaceship *s)
     if(s->sy+37>DISPLAY_H)
     {
         s->sy=s->sy-DISPLAY_H;
+    }
+
+}
+int BIG_SHIP_B(Spaceship *s,Asteroid comet[],BOSS1 *boss1,BOSS2 *boss2, XBOSS xboss1[], XBOSS xboss2[])
+{
+    if(s->TX==9)
+    {
+        for(int i=0;i<comet_lives;i++)
+        {
+            if(comet[i].gone==2)
+            {
+                comet[i].gone=1;
+            }
+        }
+        for(int i=0;i<XBOSS_number;i++)
+        {
+            if(xboss1[i].gone==2)
+            {
+                xboss1[i].gone=1;
+            }
+            if(xboss2[i].gone==2)
+            {
+                xboss2[i].gone=1;
+            }
+        }
+        if(boss1->gone==2)
+        {
+            boss1->live-=3;
+        }
+        if(boss2->gone==2)
+        {
+            boss2->live-=2;
+        }
+    }
+    if(s->TX!=0)
+    {
+
+        al_draw_bitmap(big_blast[18-s->TX],0,-50,0);
+        s->s_time=s->s_time+1;
+        if(s->s_time==10)
+        {
+            s->TX=s->TX-1;
+            s->s_time=0;
+        }
+    }
+    if(s->TX==0)
+    {
+        s->TX=18;
+        s->s_time=0;
+        s->yORn=0;
     }
 
 }

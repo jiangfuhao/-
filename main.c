@@ -3,19 +3,23 @@
 const int REC_SIZE= 10;
 const int Blast_number=1000;//子弹个数
 const int ship_live=3;
+int ship_type =1;
 int decision=0;
-int grade = 0;
+int grade =0;   //分数
 int Blast_old=0;
 int D_blast =0;//子弹已经发射的个数
 int map_h;
 int time_pro=0;//保护罩时间
-int xboss_out=0;//xboss出现时间
-int boss_out=0;//boss出现
+int xboss1_out=0;//xboss出现时间
+int xboss2_out=0;
+int boss1_out=0;//boss1出现
+int boss2_out=0;//boss2出现
+int boss3_out=0;//boss3出现
 int buff_out_time=0;// buff出现时间
 int buff_out = 0;
 int buff_xs=0;
 enum MYKEYS {
-    KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT,KEY_SPASE,KEY_E,KEY_F,KEY_S,KEY_D,KEY_A
+    KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT,KEY_SPASE,KEY_Q,KEY_F,KEY_S,KEY_D,KEY_A
 };
 //boss
 
@@ -27,9 +31,12 @@ int Init_screen()
 
     music_game(1,1.0);
     int w=100;
-
     int redraw = 1;
-    int choose=1;
+    int choose=1; //选项
+    int jiemian = 0;//界面
+    int xiaxian = 4;
+    int RorL=1;
+    int RMAX=3;
 
     while (1)
     {
@@ -48,25 +55,33 @@ int Init_screen()
         else if(ev.type == ALLEGRO_EVENT_KEY_DOWN) {
             switch (ev.keyboard.keycode) {
             case ALLEGRO_KEY_ENTER:
-                if(choose==1)
+                if(jiemian==0&&choose==1)
                 {
+                    ship_type=RorL-1;
+                    decision=2;
+                    jiemian=5;
+                }
+                else if(jiemian==0&&choose==4)
+                {
+                    jiemian=4;
+                }
+                else if(jiemian==0&&choose==2)
+                {
+                    jiemian=2;
+                }
+                else if(jiemian==0&&choose==3)
+                {
+                    jiemian=1;
                     choose=1;
-                    decision++;
+                    xiaxian=3;
                 }
-                if(choose==2)
+                else if(jiemian==1&&choose==3)
                 {
-                    decision = 3;
-                }
-                if(choose==3)
-                {
+                    jiemian=0;
                     choose=1;
-                    decision=0;
+                    xiaxian=4;
                 }
-                if(choose==4)
-                {
-                    decision=4;
-                }
-                break;
+               break;
             case ALLEGRO_KEY_UP:
                 if(choose!=1)
                 {
@@ -74,9 +89,22 @@ int Init_screen()
                 }
                 break;
             case ALLEGRO_KEY_DOWN:
-                if(choose!=4)
+                if(choose!=xiaxian)
                 {
                     choose+=1;
+                }
+                break;
+            case ALLEGRO_KEY_LEFT:
+                if(RorL!=1)
+                {
+                    RorL-=1;
+                }
+                break;
+
+            case ALLEGRO_KEY_RIGHT:
+                if(RorL!=RMAX)
+                {
+                    RorL+=1;
                 }
                 break;
             }
@@ -89,7 +117,7 @@ int Init_screen()
             }
         }
         else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
-            decision++;
+
 
         }
 
@@ -101,10 +129,10 @@ int Init_screen()
             al_identity_transform(&transform);
             al_translate_transform(&transform,0,0);
             al_use_transform(&transform);
-            al_draw_bitmap(setting[1],0,0,0);
-            switch (decision) {
+            al_draw_bitmap(setting[0],0,0,0);
+            switch (jiemian) {
 loop:case 0:
-                al_draw_text(font[4],blu,60,15,ALLEGRO_ALIGN_CENTRE,"版本：startrek-0.8.1");
+                al_draw_text(font[4],blu,60,15,ALLEGRO_ALIGN_CENTRE,"版本：startrek-0.9.0");
                 al_draw_text(font[0],blu,DISPLAY_W/2,0,ALLEGRO_ALIGN_CENTRE,"爆破彗星");
                 if(choose==1)
                 {
@@ -124,11 +152,11 @@ loop:case 0:
                 }
                 if(choose==3)
                 {
-                    al_draw_text(font[1],yellow,DISPLAY_W/2,DISPLAY_H-w-250,ALLEGRO_ALIGN_CENTRE,"音效");
+                    al_draw_text(font[1],yellow,DISPLAY_W/2,DISPLAY_H-w-250,ALLEGRO_ALIGN_CENTRE,"设置");
                 }
                 else
                 {
-                    al_draw_text(font[2],green,DISPLAY_W/2,DISPLAY_H-w-250,ALLEGRO_ALIGN_CENTRE,"音效");
+                    al_draw_text(font[2],green,DISPLAY_W/2,DISPLAY_H-w-250,ALLEGRO_ALIGN_CENTRE,"设置");
                 }
                 if(choose==4)
                 {
@@ -141,6 +169,62 @@ loop:case 0:
                 break;
             case 1:
                 if(choose==1)
+                {
+                    al_draw_text(font[1],yellow,DISPLAY_W/4,DISPLAY_H-w-400,ALLEGRO_ALIGN_CENTRE,"音乐：");
+                }
+                else
+                {
+                    al_draw_text(font[2],green,DISPLAY_W/4,DISPLAY_H-w-400,ALLEGRO_ALIGN_CENTRE,"音乐：");
+                }
+                if(choose==2)
+                {
+                    al_draw_text(font[1],yellow,DISPLAY_W/4,DISPLAY_H-w-200,ALLEGRO_ALIGN_CENTRE,"角色:");
+                    al_draw_bitmap(xuan[0],DISPLAY_W/4+100,DISPLAY_H-w-100,0);
+                    al_draw_bitmap(xuan[0],DISPLAY_W/4+300,DISPLAY_H-w-100,0);
+                    al_draw_bitmap(xuan[0],DISPLAY_W/4+500,DISPLAY_H-w-100,0);
+                    if(RorL==1)
+                    {
+                         al_draw_bitmap(ship_imge[5],DISPLAY_W/4+100,DISPLAY_H-w-200,0);
+                         al_draw_bitmap(xuan[1],DISPLAY_W/4+105,DISPLAY_H-w-90,0);
+
+                    }
+                    else{
+                         al_draw_bitmap(ship_imge[0],DISPLAY_W/4+100,DISPLAY_H-w-200,0);
+                    }
+                    if(RorL==2)
+                    {
+                         al_draw_bitmap(ship_imge[4],DISPLAY_W/4+300,DISPLAY_H-w-200,0);
+                         al_draw_bitmap(xuan[1],DISPLAY_W/4+305,DISPLAY_H-w-90,0);
+                    }
+                    else{
+                         al_draw_bitmap(ship_imge[1],DISPLAY_W/4+310,DISPLAY_H-w-200,0);
+
+                    }
+                    if(RorL==3)
+                    {
+                         al_draw_bitmap(ship_imge[3],DISPLAY_W/4+500,DISPLAY_H-w-200,0);
+                         al_draw_bitmap(xuan[1],DISPLAY_W/4+505,DISPLAY_H-w-90,0);
+                    }
+                    else{
+                         al_draw_bitmap(ship_imge[2],DISPLAY_W/4+500,DISPLAY_H-w-200,0);
+                    }
+                }
+                else
+                {
+                    al_draw_text(font[2],green,DISPLAY_W/4,DISPLAY_H-w-200,ALLEGRO_ALIGN_CENTRE,"角色:");
+                    al_draw_bitmap(ship_imge[0],DISPLAY_W/4+100,DISPLAY_H-w-200,0);
+                    al_draw_bitmap(ship_imge[1],DISPLAY_W/4+300,DISPLAY_H-w-200,0);
+                    al_draw_bitmap(ship_imge[2],DISPLAY_W/4+500,DISPLAY_H-w-200,0);
+                }
+                if(choose==3)
+                {
+                    al_draw_text(font[1],yellow,DISPLAY_W/2,DISPLAY_H-w-50,ALLEGRO_ALIGN_CENTRE,"返回");
+                }
+                else
+                {
+                    al_draw_text(font[2],green,DISPLAY_W/2,DISPLAY_H-w-50,ALLEGRO_ALIGN_CENTRE,"返回");
+                }
+               /* if(choose==1)
                 {
                     al_draw_text(font[1],yellow,DISPLAY_W/2,DISPLAY_H/3,ALLEGRO_ALIGN_CENTRE,"单人模式");
                 }
@@ -163,9 +247,9 @@ loop:case 0:
                 else
                 {
                     al_draw_text(font[2],green,DISPLAY_W/2,DISPLAY_H-200,ALLEGRO_ALIGN_CENTRE,"返回菜单");
-                }
+                }*/
                 break;
-            case 3:
+            case 2:
             {
                 int redraw = 1;
                 int c = 1;
@@ -262,7 +346,7 @@ loop:case 0:
                             al_flip_display();
                             break;
                         case 1:
-                            decision = 0;
+                            jiemian = 0;
                             goto loop;
                         case 2:
                             exit(1);
@@ -273,6 +357,8 @@ loop:case 0:
 
 
             }
+                break;
+            case 3:
                 break;
             case 4:
                 exit(0);
@@ -340,8 +426,11 @@ int main(void)
         Spaceship ship[2];//飞船数组
         BUFF ship_buff;
         struct Blast ship_blast,*p_blast,*blast_h;//飞机子弹
-        BOSS1 boss; //boss定义
-        XBOSS xboss[XBOSS_number];//xboss定义
+        BOSS1 boss;                        //boss1定义
+        BOSS2 boss2;                       //boss2定义
+        BOSS3 boss3;                       //boss3定义
+        XBOSS xboss[XBOSS_number];         //xboss定义
+        XBOSS xboss2[XBOSS_number];        //xboss2
         BOSS_Blast xb_blast[XBOSS_number]; //xb_blast定义
         int bt=1;
         int time_blast1=0;
@@ -352,7 +441,7 @@ int main(void)
             Init_star(&comet[i]);
         }
 
-        Init_ship(&ship[0],1); //飞船初始
+        Init_ship(&ship[0],ship_type); //飞船初始
         //子弹定义
         p_blast=&ship_blast;
         Init_Blast(&p_blast);
@@ -402,31 +491,16 @@ int main(void)
 
 
                 }
-                /* if(key[KEY_E])
-          {
-              ship[1].sx += 4.0 * sin(ship[1].heading);
-              ship[1].sy -= 4.0 * cos(ship[1].heading);
-          }
-          if(key[KEY_D])
-          {
-              ship[1].sx -= 4.0 * sin(ship[1].heading);
-              ship[1].sy += 4.0 * cos(ship[1].heading);
-          }
-          if(key[KEY_S])
-          {
-              ship[1].heading-=0.1;
-          }
-          if(key[KEY_F])
-          {
-              ship[1].heading+=0.1;
-          }
-          if(key[KEY_A])
-          {
+                if(key[KEY_Q])
+                {
+                    if(ship[0].energy==100)
+                    {
+                        ship[0].yORn=1;
+                        ship[0].energy=0;
+                        al_play_sample(sample[5],1.0,0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);//龙吼
+                    }
+                }
 
-                Init_Blast(&ship_blast1[Blast_old],ship[1]);
-                Blast_old1++;
-
-          }*/
                 redraw = true;
             }
             else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
@@ -453,6 +527,9 @@ int main(void)
                 case ALLEGRO_KEY_SPACE:
                     key[KEY_SPASE] = true;
                     break;
+                case ALLEGRO_KEY_Q:
+                    key[KEY_Q] = true;
+                    break;
 
                 }
             }
@@ -477,23 +554,10 @@ int main(void)
                 case ALLEGRO_KEY_SPACE:
                     key[KEY_SPASE] = false;
                     break;
-                    /*case ALLEGRO_KEY_E:
-            key[KEY_E] = false;
-            break;
+                case ALLEGRO_KEY_Q:
+                    key[KEY_Q] = false;
+                    break;
 
-         case ALLEGRO_KEY_S:
-            key[KEY_S] = false;
-            break;
-
-         case ALLEGRO_KEY_A:
-            key[KEY_A] = false;
-            break;
-
-         case ALLEGRO_KEY_D:
-            key[KEY_D] = false;
-            break;
-        case ALLEGRO_KEY_F:
-            key[KEY_F] = false;*/
                 }
             }
 
@@ -521,48 +585,82 @@ int main(void)
                 map_game(&map_h);
                 map_h++;
                 Ship_grade(grade);
-                if(grade>=100&&boss_out==0)
+                //大招
+                if(ship[0].yORn==1)
                 {
+                    BIG_SHIP_B(&ship[0],comet,&boss,&boss2,xboss,xboss2);
+                }
 
-                    boss_out=1;
+                if(grade>=100&&boss1_out==0)    //boss1出现
+                {
+                    boss1_out=1;
                     init_boss(&boss);
-
-                    //music_game(3,0);
                 }
-                if(grade!=0&&grade%5==0&&xboss_out==0)
+                //xboss
+                if(grade!=0&&grade%15==0&&xboss1_out==0)  //xboss
                 {
-                    xboss_out=1;
-                    init_xboss(xboss,xb_blast);
+                    xboss1_out=1;
+                    init_xboss(xboss,xb_blast,1);
                 }
-                if(xboss_out==1)
+                if(xboss1_out==1)
                 {
 
                     hit_ship_xb(&ship[0],xboss,xb_blast);
 
                     if(judge_xboss(xboss)==0)
                     {
-                        xboss_out=0;
+                        xboss1_out=0;
                     }
                     Draw_xb_blast(xb_blast);
                     xb_bhit_star(xb_blast,&ship[0]);
                 }
+                if(grade!=0&&grade%5==0&&xboss2_out==0)  //xboss
+                {
+                    xboss2_out=1;
+                    init_xboss(xboss2,xb_blast,2);
+                }
+                if(xboss2_out==1)
+                {
+
+                    hit_ship_xb(&ship[0],xboss2,xb_blast);
+
+                    if(judge_xboss(xboss2)==0)
+                    {
+                        xboss2_out=0;
+                    }
+                    Draw_xb_blast(xb_blast);
+                    xb_bhit_star(xb_blast,&ship[0]);
+                }
+                //xbossendl
                 if(boss.gone!=0)
                 {
 
                     Draw_boss(&boss,&ship[0]);
-
                     if(boss.live<0&&boss.TX!=0)
                     {
-                        //music_game(2,0);
                         grade=grade+100;
                         boss.gone=1;
-                        //boss_out=0;
-
 
                     }
 
                 }
+                if(grade>=400&&boss2_out==0)
+                {
+                    boss2_out=1;
+                    init_boss2(&boss2);
+                }
+                if(boss2.gone!=0)
+                {
 
+                    Draw_boss2(&boss2,&ship[0]);
+                    if(boss2.live<0&&boss2.TX!=0)
+                    {
+                        grade=grade+300;
+                        boss2.gone=1;
+
+                    }
+
+                }
                 //buff出现
                 if(buff_out_time==500&&buff_out==0)
                 {
@@ -613,14 +711,18 @@ int main(void)
                         {
                             if(blast_h->sx<=comet[b].sx+25&&blast_h->sx>=comet[b].sx-25) //子弹射中彗星
                             {
-                                if (blast_h->sy-20<=comet[b].sy+25&&blast_h->sy-20>=comet[b].sy-25)
+                                if (blast_h->sy<=comet[b].sy+25&&blast_h->sy>=comet[b].sy-25)
                                 {
                                     comet[b].gone=1;
 
                                     Delete_Blast(&p_blast,bt);
                                     if(ship[0].energy!=100)    // 能量增加
                                     {
-                                        ship[0].energy++;
+                                        ship[0].energy+=5;
+                                        if(ship[0].energy>100)
+                                        {
+                                            ship[0].energy=100;
+                                        }
 
                                     }
                                     grade++;
@@ -648,7 +750,42 @@ int main(void)
                                     Delete_Blast(&p_blast,bt);
                                     if(ship[0].energy!=100)    // 能量增加
                                     {
-                                        ship[0].energy++;
+                                        ship[0].energy+=2;
+                                        if(ship[0].energy>100)
+                                        {
+                                            ship[0].energy=100;
+                                        }
+                                    }
+                                    grade=grade+2;
+                                }
+
+                            }
+                        }
+                    }
+                    for(int i=0;i<XBOSS_number;i++)
+                    {
+
+                        if(xboss2[i].gone==2)
+                        {
+                            al_identity_transform(&transform);
+                            al_rotate_transform(&transform,xboss2[i].twist);
+                            al_translate_transform(&transform,xboss2[i].sx,xboss2[i].sy);
+                            al_use_transform(&transform);
+                            if(blast_h->sx>xboss2[i].sx-20&&blast_h->sx<xboss2[i].sx+20) //子弹射中彗星
+                            {
+                                if (blast_h->sy-20>xboss2[i].sy-20&&blast_h->sy-20<xboss2[i].sy+20)
+                                {
+                                    xboss2[i].gone=1;
+                                    //al_rest(2);
+                                    Delete_Blast(&p_blast,bt);
+                                    if(ship[0].energy!=100)    // 能量增加
+                                    {
+
+                                        ship[0].energy+=3;
+                                        if(ship[0].energy>100)
+                                        {
+                                            ship[0].energy=100;
+                                        }
 
                                     }
                                     grade=grade+2;
@@ -657,10 +794,14 @@ int main(void)
                             }
                         }
                     }
-
                     if(hit_boss(boss,blast_h)==1)
                     {
                         boss.live--;
+                        Delete_Blast(&p_blast,bt);
+                    }
+                    if(hit_boss2(boss2,blast_h)==1)
+                    {
+                        boss2.live-=0.5;
                         Delete_Blast(&p_blast,bt);
                     }
                     Move_Blast(&blast_h);

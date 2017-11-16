@@ -17,7 +17,7 @@
 #define DISPLAY_W 1250              //屏幕宽度
 #define FPS 60
 #define BOSSBlast_number 100
-#define XBOSS_number 6
+#define XBOSS_number 10
 #define comet_lives 10//彗星个数
 typedef struct {
     float sx;//位置
@@ -38,6 +38,7 @@ struct Blast{
     float heading;
     float speed;
     int gone;
+    int type;
     struct Blast *next;
     ALLEGRO_COLOR color;
 };//炮弹
@@ -59,7 +60,10 @@ typedef struct {
     int energy;
     int pro;
     int blast_mode;
-
+    int type;   //外貌
+    int yORn;    //大招
+    int TX;
+    int s_time;
 }Spaceship;//飞船
 typedef struct {
     float sx;//位置
@@ -75,8 +79,46 @@ typedef struct {
     int TX; //特效
     int s_time;
     BOSS_Blast blast1[BOSSBlast_number];
-    BOSS_Blast blast2[BOSSBlast_number];
+
 }BOSS1;
+typedef struct {
+    float sx;//位置
+    float sy;
+    float heading;//方向
+    float speed;//速度
+    float live;  //生命值
+    int type;
+    int xy;//范围
+    int gone;//是否毁灭
+    int old_blast1;
+    int old_blast2;
+    int old_blast3;
+    int time_b;
+    int blast_type;//子弹类型
+    int TX; //特效
+    int s_time;
+
+    BOSS_Blast blast1[BOSSBlast_number];
+    BOSS_Blast blast2[BOSSBlast_number];
+}BOSS2;
+typedef struct {
+    float sx;//位置
+    float sy;
+    float heading;//方向
+    float speed;//速度
+    float live;  //生命值
+    int xy;//范围
+    int gone;//是否毁灭
+    int old_blast;
+    int time_b;
+    int blast_type;//子弹类型
+    int TX; //特效
+    int s_time;
+    BOSS_Blast blast1[BOSSBlast_number];
+    BOSS_Blast blast2[BOSSBlast_number];
+    BOSS_Blast blast3[BOSSBlast_number];
+
+}BOSS3;
 typedef struct {
     float sx;//位置
     float sy;
@@ -114,11 +156,15 @@ ALLEGRO_TRANSFORM transform;
 ALLEGRO_FONT *font[5];
 
 ALLEGRO_SAMPLE *sample[8];
-ALLEGRO_BITMAP *xboss;
-ALLEGRO_BITMAP *setting[6];
+ALLEGRO_SAMPLE *ship_imge[6];
+ALLEGRO_BITMAP *blast_ship[4];
+ALLEGRO_BITMAP *xboss[4];
+ALLEGRO_BITMAP *setting[3];
+ALLEGRO_BITMAP *boss_image[3];
 ALLEGRO_BITMAP *baoz[10];
 ALLEGRO_BITMAP *baoz_xb[11];
 ALLEGRO_BITMAP *boss_bz[11];
+ALLEGRO_BITMAP *big_blast[18];//大招
 ALLEGRO_BITMAP *xb_bl;
 ALLEGRO_BITMAP *pro;// 保护罩
 ALLEGRO_BITMAP *buffs[6];
@@ -126,6 +172,7 @@ ALLEGRO_BITMAP *boss_blast[5];
 ALLEGRO_BITMAP *photo[5];
 ALLEGRO_BITMAP *kaichang[145];
 ALLEGRO_BITMAP *buff;
+ALLEGRO_BITMAP *xuan[2];//选择图片
 ALLEGRO_EVENT ev;
 
 //彗星函数
@@ -143,9 +190,10 @@ int Start_imge();
 int Ship_grade(int grade);
 int Init_ship(Spaceship *s ,int i);
 int Draw_ship(Spaceship *s);
+int BIG_SHIP_B(Spaceship *s,Asteroid comet[],BOSS1 *boss1,BOSS2 *boss2, XBOSS xboss1[], XBOSS xboss2[]);  //大招
 //音乐
 int music_game(int i,float choose);
-//boss
+//boss1
 int init_boss(BOSS1 *boss);
 int Draw_boss(BOSS1 *boss,Spaceship *s);
 int Move_boss(BOSS1 *boss,Spaceship *s);
@@ -154,6 +202,15 @@ int init_bs_blast(BOSS1 *boss,Spaceship *s);
 int Draw_bs_blast(BOSS1 *boss);
 double count_head(double x,double y,Spaceship *s);
 int hit_ship(Spaceship *s,BOSS1 *b);
+//boss2
+int init_boss2(BOSS2 *boss);
+int Move_boss2(BOSS2 *boss,Spaceship *s);
+int Draw_boss2_1(BOSS2 *boss,Spaceship *s);
+int Draw_boss2_2(BOSS2 *boss,Spaceship *s);
+int hit_boss2(BOSS2 boss, struct Blast *blast_h);
+int init_bs_blast2(BOSS2 *boss,Spaceship *s);
+
+int hit_ship2(Spaceship *s,BOSS2 *b);
 //地图
 int map_game(int *map_h);
 //爆炸
@@ -174,11 +231,11 @@ int Move_xb_blast(BOSS_Blast *xb_bl);
 double count_head(double x,double y,Spaceship *s);         //追宗飞船
 int xb_bhit_star(BOSS_Blast xb_blast[],Spaceship *s);
 //xboss
-int init_xboss(XBOSS xb[],BOSS_Blast xb_blast[]);
+int init_xboss(XBOSS xb[],BOSS_Blast xb_blast[],int i);
 int Draw_xboss(XBOSS *xb,BOSS_Blast *xb_bl,Spaceship *s);
 int hit_ship_xb(Spaceship *s,XBOSS xb[],BOSS_Blast xb_blast[]);
 int judge_xboss(XBOSS xb[]);                              //判断xboss是否全部消失
-int Move_xboss(XBOSS *xb,BOSS_Blast *xb_blast,Spaceship *s);
+int Move_xboss(XBOSS *xb,BOSS_Blast *xb_blast,Spaceship *s,int i);
 //buff
 int Init_buff(BUFF *buff);
 int SHIP_buff(Spaceship *ship,BUFF *buff);

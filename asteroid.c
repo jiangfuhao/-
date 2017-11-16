@@ -41,7 +41,7 @@ int Draw_star(Asteroid *c)
     else if(c->gone==2)
     {
 
-        al_draw_bitmap(setting[2],-30,-30,0);
+        al_draw_bitmap(setting[1],-30,-30,0);
         move_star(c);
     }
 
