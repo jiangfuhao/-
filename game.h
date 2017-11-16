@@ -159,7 +159,7 @@ ALLEGRO_SAMPLE *sample[8];
 ALLEGRO_SAMPLE *ship_imge[6];
 ALLEGRO_BITMAP *blast_ship[4];
 ALLEGRO_BITMAP *xboss[4];
-ALLEGRO_BITMAP *setting[3];
+ALLEGRO_BITMAP *setting[30];
 ALLEGRO_BITMAP *boss_image[3];
 ALLEGRO_BITMAP *baoz[10];
 ALLEGRO_BITMAP *baoz_xb[11];

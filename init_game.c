@@ -1468,7 +1468,125 @@ int GameInit(int i)
         al_destroy_display(display);
         return -1;
     }
-
+    setting[3] = al_load_bitmap("../startrek/jq/a.jpg");
+    if(!setting[3])
+    {
+        fprintf(stderr,"3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    setting[4] = al_load_bitmap("../startrek/jq/b.jpg");
+    if(!setting[4])
+    {
+        fprintf(stderr,"3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    setting[5] = al_load_bitmap("../startrek/jq/c.jpg");
+    if(!setting[5])
+    {
+        fprintf(stderr,"3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    setting[6] = al_load_bitmap("../startrek/jq/aa.png");
+    if(!setting[6])
+    {
+        fprintf(stderr,"3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    setting[7] = al_load_bitmap("../startrek/jq/cc.png");
+    if(!setting[7])
+    {
+        fprintf(stderr,"3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    setting[8] = al_load_bitmap("../startrek/jq/cc.png");
+    if(!setting[8])
+    {
+        fprintf(stderr,"3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    setting[9] = al_load_bitmap("../startrek/jq/bb.png");
+    if(!setting[9])
+    {
+        fprintf(stderr,"3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    setting[10] = al_load_bitmap("../startrek/jq/bb.png");
+    if(!setting[10])
+    {
+        fprintf(stderr,"3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    setting[11] = al_load_bitmap("../startrek/jq/bb.png");
+    if(!setting[11])
+    {
+        fprintf(stderr,"3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    setting[12] = al_load_bitmap("../startrek/jq/qq.png");
+    if(!setting[12])
+    {
+        fprintf(stderr,"3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    setting[13] = al_load_bitmap("../startrek/jq/ww.png");
+    if(!setting[13])
+    {
+        fprintf(stderr,"3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    setting[14] = al_load_bitmap("../startrek/jq/ee.png");
+    if(!setting[14])
+    {
+        fprintf(stderr,"3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    setting[15] = al_load_bitmap("../startrek/jq/rr.png");
+    if(!setting[15])
+    {
+        fprintf(stderr,"3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    setting[16] = al_load_bitmap("../startrek/jq/tt.png");
+    if(!setting[16])
+    {
+        fprintf(stderr,"3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    setting[17] = al_load_bitmap("../startrek/jq/zz.png");
+    if(!setting[17])
+    {
+        fprintf(stderr,"3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    setting[18] = al_load_bitmap("../startrek/jq/xx.png");
+    if(!setting[18])
+    {
+        fprintf(stderr,"3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
+    setting[19] = al_load_bitmap("../startrek/jq/vv.png");
+    if(!setting[19])
+    {
+        fprintf(stderr,"3:Failed to load image!");
+        al_destroy_display(display);
+        return -1;
+    }
     Boss_image();
     xboss[0] = al_load_bitmap("../startrek/敌机/1 (75).png");
     if(!xboss[0])

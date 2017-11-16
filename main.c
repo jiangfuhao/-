@@ -417,6 +417,40 @@ int main(void)
         }
         int result = 0;
         //Music_init();
+
+
+        al_identity_transform(&transform);
+        al_translate_transform(&transform,0,0);
+        al_use_transform(&transform);
+
+        al_draw_bitmap(setting[3],0,0,0);
+        al_flip_display();
+        al_rest(4.0);
+
+        al_draw_bitmap(setting[4],0,0,0);
+        al_draw_bitmap(setting[7],480,150,0);
+        al_draw_bitmap(setting[9],650,30,0);
+        al_draw_bitmap(setting[6],640,0,0);
+        al_draw_bitmap(setting[8],880,400,0);
+        al_draw_bitmap(setting[10],1150,400,0);
+        al_draw_bitmap(setting[11],700,490,0);
+        al_flip_display();
+        al_rest(5.0);
+
+        al_draw_bitmap(setting[5],0,0,0);
+
+        al_draw_bitmap(setting[13],20,115,0);
+        al_draw_bitmap(setting[15],10,300,0);
+        al_draw_bitmap(setting[12],570,-100,0);
+        al_draw_bitmap(setting[14],270,150,0);
+        al_draw_bitmap(setting[16],100,420,0);
+        al_draw_bitmap(setting[17],110,580,0);
+        al_draw_bitmap(setting[18],700,290,0);
+        al_draw_bitmap(setting[19],560,495,0);
+        al_flip_display();
+        al_rest(6.0);
+
+
         Init_screen();
 
 
