@@ -91,8 +91,7 @@ typedef struct {
     int xy;//范围
     int gone;//是否毁灭
     int old_blast1;
-    int old_blast2;
-    int old_blast3;
+
     int time_b;
     int blast_type;//子弹类型
     int TX; //特效

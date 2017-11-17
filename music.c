@@ -21,7 +21,7 @@ int music_game(int i,float choose)
 
         //al_destroy_sample(sample[1]);
         //al_destroy_sample(sample[3]);
-        al_play_sample(sample[2],1.0,0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);//对战
+        al_play_sample(sample[2],1.0,0.0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);//对战
     }
     else if(i==3)
     {

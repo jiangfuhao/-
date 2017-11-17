@@ -22,7 +22,40 @@ enum MYKEYS {
     KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT,KEY_SPASE,KEY_Q,KEY_F,KEY_S,KEY_D,KEY_A
 };
 //boss
+//剧情
+int juqing()
+{
+    al_identity_transform(&transform);
+    al_translate_transform(&transform,0,0);
+    al_use_transform(&transform);
 
+    al_draw_bitmap(setting[3],0,0,0);
+    al_flip_display();
+    al_rest(1.0);
+
+    al_draw_bitmap(setting[4],0,0,0);
+    al_draw_bitmap(setting[7],480,150,0);
+    al_draw_bitmap(setting[9],650,30,0);
+    al_draw_bitmap(setting[6],640,0,0);
+    al_draw_bitmap(setting[8],880,400,0);
+    al_draw_bitmap(setting[10],1150,400,0);
+    al_draw_bitmap(setting[11],700,490,0);
+    al_flip_display();
+    al_rest(2.0);
+
+    al_draw_bitmap(setting[5],0,0,0);
+
+    al_draw_bitmap(setting[13],20,115,0);
+    al_draw_bitmap(setting[15],10,300,0);
+    al_draw_bitmap(setting[12],570,-100,0);
+    al_draw_bitmap(setting[14],270,150,0);
+    al_draw_bitmap(setting[16],100,420,0);
+    al_draw_bitmap(setting[17],110,580,0);
+    al_draw_bitmap(setting[18],700,290,0);
+    al_draw_bitmap(setting[19],560,495,0);
+    al_flip_display();
+    al_rest(1.0);
+}
 
 //初始游戏的屏幕
 int Init_screen()
@@ -81,6 +114,10 @@ int Init_screen()
                     choose=1;
                     xiaxian=4;
                 }
+                else if(jiemian==1&&choose==1)
+                {
+                    jiemian=3;
+                }
                break;
             case ALLEGRO_KEY_UP:
                 if(choose!=1)
@@ -132,7 +169,7 @@ int Init_screen()
             al_draw_bitmap(setting[0],0,0,0);
             switch (jiemian) {
 loop:case 0:
-                al_draw_text(font[4],blu,60,15,ALLEGRO_ALIGN_CENTRE,"版本：startrek-0.9.0");
+                al_draw_text(font[4],blu,60,15,ALLEGRO_ALIGN_CENTRE,"版本：startrek-1.0.0");
                 al_draw_text(font[0],blu,DISPLAY_W/2,0,ALLEGRO_ALIGN_CENTRE,"爆破彗星");
                 if(choose==1)
                 {
@@ -170,11 +207,11 @@ loop:case 0:
             case 1:
                 if(choose==1)
                 {
-                    al_draw_text(font[1],yellow,DISPLAY_W/4,DISPLAY_H-w-400,ALLEGRO_ALIGN_CENTRE,"音乐：");
+                    al_draw_text(font[1],yellow,DISPLAY_W/4,DISPLAY_H-w-400,ALLEGRO_ALIGN_CENTRE,"游戏剧情");
                 }
                 else
                 {
-                    al_draw_text(font[2],green,DISPLAY_W/4,DISPLAY_H-w-400,ALLEGRO_ALIGN_CENTRE,"音乐：");
+                    al_draw_text(font[2],green,DISPLAY_W/4,DISPLAY_H-w-400,ALLEGRO_ALIGN_CENTRE,"游戏剧情");
                 }
                 if(choose==2)
                 {
@@ -347,7 +384,7 @@ loop:case 0:
                             break;
                         case 1:
                             jiemian = 0;
-                            goto loop;
+
                         case 2:
                             exit(1);
                         }
@@ -359,6 +396,9 @@ loop:case 0:
             }
                 break;
             case 3:
+                juqing();
+                jiemian=0;
+                xiaxian=4;
                 break;
             case 4:
                 exit(0);
@@ -379,77 +419,16 @@ loop:case 0:
 }
 
 
-
-int main(void)
+int Game_run()
 {
-    int o_or_c_start=0;
+
 
     while(1)
     {
-        GameInit(o_or_c_start);
+
         Music_init();
-        if(o_or_c_start==0)
-        {
-            int x=115;
-            int y=0;
-           // GameInit(1);
 
-            while(x!=-1)
-            {
-
-                if(x==35)
-                {
-                    music_game(0,0);
-                }
-
-                al_draw_bitmap(kaichang[x],0,0,0);
-                al_flip_display();
-
-                if(y==5)
-                {
-                    x--;
-                    y=0;
-                }
-                y++;
-
-            }
-            o_or_c_start=1;
-        }
         int result = 0;
-        //Music_init();
-
-
-        al_identity_transform(&transform);
-        al_translate_transform(&transform,0,0);
-        al_use_transform(&transform);
-
-        al_draw_bitmap(setting[3],0,0,0);
-        al_flip_display();
-        al_rest(4.0);
-
-        al_draw_bitmap(setting[4],0,0,0);
-        al_draw_bitmap(setting[7],480,150,0);
-        al_draw_bitmap(setting[9],650,30,0);
-        al_draw_bitmap(setting[6],640,0,0);
-        al_draw_bitmap(setting[8],880,400,0);
-        al_draw_bitmap(setting[10],1150,400,0);
-        al_draw_bitmap(setting[11],700,490,0);
-        al_flip_display();
-        al_rest(5.0);
-
-        al_draw_bitmap(setting[5],0,0,0);
-
-        al_draw_bitmap(setting[13],20,115,0);
-        al_draw_bitmap(setting[15],10,300,0);
-        al_draw_bitmap(setting[12],570,-100,0);
-        al_draw_bitmap(setting[14],270,150,0);
-        al_draw_bitmap(setting[16],100,420,0);
-        al_draw_bitmap(setting[17],110,580,0);
-        al_draw_bitmap(setting[18],700,290,0);
-        al_draw_bitmap(setting[19],560,495,0);
-        al_flip_display();
-        al_rest(6.0);
-
 
         Init_screen();
 
@@ -462,19 +441,26 @@ int main(void)
         struct Blast ship_blast,*p_blast,*blast_h;//飞机子弹
         BOSS1 boss;                        //boss1定义
         BOSS2 boss2;                       //boss2定义
-        BOSS3 boss3;                       //boss3定义
+       // BOSS3 boss3;                       //boss3定义
         XBOSS xboss[XBOSS_number];         //xboss定义
         XBOSS xboss2[XBOSS_number];        //xboss2
         BOSS_Blast xb_blast[XBOSS_number]; //xb_blast定义
+        BOSS_Blast xb_blast2[XBOSS_number]; //xb_blast2定义
         int bt=1;
         int time_blast1=0;
-        int boss_blast_time=0;
+       // int boss_blast_time=0;
         int time_star1=0;
         for (int i=0;i<comet_lives;i++)
         {
             Init_star(&comet[i]);
         }
-
+        for(int i=0;i<XBOSS_number;i++)
+        {
+            xboss[i].gone=0;
+            xboss2[i].gone=0;
+        }
+        boss.gone=0;
+        boss2.gone=0;
         Init_ship(&ship[0],ship_type); //飞船初始
         //子弹定义
         p_blast=&ship_blast;
@@ -630,7 +616,7 @@ int main(void)
                     boss1_out=1;
                     init_boss(&boss);
                 }
-                //xboss
+                //xboss1
                 if(grade!=0&&grade%15==0&&xboss1_out==0)  //xboss
                 {
                     xboss1_out=1;
@@ -648,22 +634,30 @@ int main(void)
                     Draw_xb_blast(xb_blast);
                     xb_bhit_star(xb_blast,&ship[0]);
                 }
-                if(grade!=0&&grade%5==0&&xboss2_out==0)  //xboss
+                if(grade!=0&&grade%5==0&&xboss2_out==0)  //xboss2
                 {
                     xboss2_out=1;
-                    init_xboss(xboss2,xb_blast,2);
+                    init_xboss(xboss2,xb_blast2,2);
+                    if(grade>100)
+                    {
+                        for(int i=0;i<XBOSS_number;i++)
+                        {
+                            lord_xb_blast(xboss2,xb_blast2,&ship[0]);
+                        }
+
+                    }
                 }
                 if(xboss2_out==1)
                 {
 
-                    hit_ship_xb(&ship[0],xboss2,xb_blast);
+                    hit_ship_xb(&ship[0],xboss2,xb_blast2);
 
                     if(judge_xboss(xboss2)==0)
                     {
                         xboss2_out=0;
                     }
-                    Draw_xb_blast(xb_blast);
-                    xb_bhit_star(xb_blast,&ship[0]);
+                    Draw_xb_blast(xb_blast2);
+                    xb_bhit_star(xb_blast2,&ship[0]);
                 }
                 //xbossendl
                 if(boss.gone!=0)
@@ -694,6 +688,11 @@ int main(void)
 
                     }
 
+                }
+                if(grade>=10&&boss2_out==1&&boss1_out==1)
+                {
+                    boss1_out=0;
+                    boss2_out=0;
                 }
                 //buff出现
                 if(buff_out_time==500&&buff_out==0)
@@ -866,10 +865,7 @@ int main(void)
         result = 1;
         if(result==1){
             al_destroy_sample(sample[0]);
-             al_destroy_sample(sample[2]);
-             al_destroy_timer(timer);
-             al_destroy_display(display);
-             al_destroy_event_queue(event_queue);
+            al_destroy_sample(sample[2]);
             decision = 0;
             grade =  0;
             continue;
@@ -877,5 +873,47 @@ int main(void)
         }
     }
 
+}
 
+int main(void)
+{
+    int o_or_c_start=0;
+    GameInit(o_or_c_start);
+     Music_init();
+    if(o_or_c_start==0)
+    {
+        int x=115;
+        int y=0;
+       // GameInit(1);
+
+        while(x!=-1)
+        {
+
+            if(x==35)
+            {
+                music_game(0,0);
+            }
+
+            al_draw_bitmap(kaichang[x],0,0,0);
+            al_flip_display();
+
+            if(y==5)
+            {
+                x--;
+                y=0;
+            }
+            y++;
+
+        }
+        o_or_c_start=1;
+    }
+    Game_run();
+    END_game();
+    return 0;
+}
+int END_game()
+{
+    al_destroy_timer(timer);
+    al_destroy_display(display);
+    al_destroy_event_queue(event_queue);
 }

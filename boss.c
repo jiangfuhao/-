@@ -414,6 +414,7 @@ int Move_xboss(XBOSS *xb,BOSS_Blast *xb_blast,Spaceship *s,int i)
             else
             {
 
+
                 xb->sx -= xb->speed * sin(xb->heading);
                 xb->sy += xb->speed * cos(xb->heading);
             }
@@ -499,8 +500,7 @@ int init_boss2(BOSS2 *boss)
     boss->xy = 0;
     boss->heading = 0.0;
     boss->old_blast1=0;
-    boss->old_blast2=0;
-    boss->old_blast3=0;
+
     boss->time_b=0;
     boss->blast_type=1;
     boss->TX=10;
@@ -535,36 +535,20 @@ int Move_boss2(BOSS2 *boss,Spaceship *s)
         else if(boss->old_blast1==BOSSBlast_number)
         {
 
-             boss->blast_type=2;
-
-        }
-        if(boss->old_blast2!=BOSSBlast_number&&boss->blast_type==2)
-        {
-
-              init_bs_blast2(boss,s);
 
 
         }
-        else if(boss->old_blast2==BOSSBlast_number){
-            boss->blast_type=1;
-        }
+
         boss->time_b=0;
 
     }
 
-    if(boss->type==0)
-    {
-        printf("1\n");
-         Scope_boss2_blast1(boss);
-         //printf("b:%d\n",boss->old_blast1);
-         Draw_bs_blast2_1(boss);
-    }
-    if(boss->blast_type==2||boss->type!=0)
-    {
-        printf("2\n");
+
+        Scope_boss2_blast1(boss);
+        Draw_bs_blast2_1(boss);
         Scope_boss2_blast2(boss);
         Draw_bs_blast2_2(boss);
-    }
+
     if(boss->sx==0)
     {
         boss->xy=0;
@@ -586,25 +570,30 @@ int Move_boss2(BOSS2 *boss,Spaceship *s)
 }
 int init_bs_blast2(BOSS2 *boss,Spaceship *s)
 {
-    if(boss->blast_type==1)
-    {
+
         if(boss->old_blast1<=BOSSBlast_number)
         {
-
+            int xx=0;
             int x=100;
             int y=0;
             int f=0;
             double r=-0.8;
             for(int i=boss->old_blast1;i<boss->old_blast1+10;i++)
             {
-                // printf("y:%d,",y);
+                boss->blast2[i].sx=boss->sx+100+xx;
+                boss->blast2[i].sy=boss->sy+230;
+                boss->blast2[i].heading=count_head(boss->sx+100,boss->sy+230,s);
+                boss->blast2[i].speed=boss->speed*5;
+                boss->blast2[i].gone=1;
+
                 boss->blast1[i].sx=boss->sx+100+x;
                 boss->blast1[i].sy=boss->sy+230+y;
                 boss->blast1[i].heading=count_head(boss->sx,boss->sy,s)+r;
-                boss->blast1[i].speed=boss->speed*4;
+                boss->blast1[i].speed=boss->speed*3;
                 boss->blast1[i].gone=1;
 
                 x=x-10;
+                xx+=5;
                 r=r+0.2;
                 if(y==40||f==1)
                 {
@@ -624,45 +613,13 @@ int init_bs_blast2(BOSS2 *boss,Spaceship *s)
             boss->old_blast1=boss->old_blast1+10;
 
 
-
         }
         if(boss->old_blast1==BOSSBlast_number+10)
         {
             boss->old_blast1=BOSSBlast_number;
 
-        }
-    }
-    else if(boss->blast_type==2)
-    {
-        if(boss->old_blast2<=BOSSBlast_number)
-        {
-
-
-            for(int i=boss->old_blast2;i<boss->old_blast2+20;i++)
-            {
-                // printf("y:%d,",y);
-                boss->blast2[i].sx=boss->sx+100+rand()%50;
-                boss->blast2[i].sy=boss->sy+230+rand()%50;
-                boss->blast2[i].heading=count_head(boss->sx+100,boss->sy+230,s);
-                boss->blast2[i].speed=boss->speed*3;
-                boss->blast2[i].gone=1;
-
-
-            }
-           // printf("\n");
-            boss->old_blast2=boss->old_blast2+20;
-
-
 
         }
-        if(boss->old_blast2==BOSSBlast_number+20)
-        {
-            boss->old_blast2=BOSSBlast_number;
-
-        }
-    }
-
-
     return 0;
 
 }
@@ -751,6 +708,24 @@ int hit_ship2(Spaceship *s,BOSS2 *b)
             }
         }
     }
+    for(int i=0;i<b->old_blast1;i++)
+    {
+        if(b->blast2[i].gone==1)
+        {
+            if(b->blast2[i].sx>s->sx-35&&b->blast2[i].sx<=s->sx+35)
+            {
+                if(b->blast2[i].sy>s->sy-37&&b->blast2[i].sy<=s->sy+37)
+                {
+                    if(s->pro==0)
+                    {
+                         s->live--;
+                    }
+
+                    b->blast2[i].gone=0;
+                }
+            }
+        }
+    }
 }
 int Scope_boss2_blast1(BOSS2 *boss)
 {
@@ -780,7 +755,7 @@ int Scope_boss2_blast1(BOSS2 *boss)
 int Scope_boss2_blast2(BOSS2 *boss)
 {
 
-    for(int i=0;i<boss->old_blast2;i++)
+    for(int i=0;i<boss->old_blast1;i++)
     {
         if(boss->blast2[i].sx>2*DISPLAY_W||boss->blast2[i].sy>2*DISPLAY_H||boss->blast2[i].sx<-DISPLAY_W||boss->blast2[i].sy<-DISPLAY_H)
         {
@@ -799,7 +774,7 @@ int Scope_boss2_blast2(BOSS2 *boss)
             boss->blast2[i].gone=2;
 
         }
-        boss->old_blast2=0;
+        boss->old_blast1=0;
     }
 
 }
@@ -830,15 +805,15 @@ int Draw_bs_blast2_2(BOSS2 *boss)
 {
 
 
-    if(boss->old_blast2!=0)
+    if(boss->old_blast1!=0)
     {
-        for(int i=0;i<=boss->old_blast2;i++)
+        for(int i=0;i<=boss->old_blast1;i++)
         {
 
             if(boss->blast2[i].gone==1)
             {
 
-                al_draw_bitmap(boss_blast[1],boss->blast1[i].sx-10,boss->blast1[i].sy-10,0);
+                al_draw_bitmap(boss_blast[1],boss->blast2[i].sx-10,boss->blast2[i].sy-10,0);
                 boss->blast2[i].sx += boss->blast2[i].speed * cos(boss->blast2[i].heading);
                 boss->blast2[i].sy += boss->blast2[i].speed * sin(boss->blast2[i].heading);
             }

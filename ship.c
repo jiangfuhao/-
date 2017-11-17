@@ -13,6 +13,7 @@ int Init_ship(Spaceship *s ,int i)
     s->type=i;
     s->yORn=0;
     s->TX=18;
+    s->s_time=0;
     return 0;
 }
 int Draw_ship(Spaceship *s)
@@ -112,11 +113,12 @@ int BIG_SHIP_B(Spaceship *s,Asteroid comet[],BOSS1 *boss1,BOSS2 *boss2, XBOSS xb
         }
         if(boss2->gone==2)
         {
-            boss2->live-=2;
+            boss2->live-=3;
         }
     }
     if(s->TX!=0)
     {
+
 
         al_draw_bitmap(big_blast[18-s->TX],0,-50,0);
         s->s_time=s->s_time+1;
