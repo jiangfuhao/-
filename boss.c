@@ -98,7 +98,7 @@ int hit_ship(Spaceship *s,BOSS1 *b)
         {
             if(b->blast1[i].sx>s->sx-35&&b->blast1[i].sx<=s->sx+35)
             {
-                if(b->blast1[i].sy>s->sy-37&&b->blast1[i].sy<=s->sy+37)
+                if(b->blast1[i].sy>s->sy-20&&b->blast1[i].sy<=s->sy+20)
                 {
                     if(s->pro==0)
                     {
@@ -423,6 +423,7 @@ int Move_xboss(XBOSS *xb,BOSS_Blast *xb_blast,Spaceship *s,int i)
     }
     else if(xb->xy==1)
     {
+
         xb->sx -= xb->speed * sin(xb->heading);
         xb->sy += xb->speed * cos(xb->heading);
     }

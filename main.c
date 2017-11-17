@@ -101,6 +101,8 @@ int Init_screen()
                 else if(jiemian==0&&choose==2)
                 {
                     jiemian=2;
+                    choose=1;
+                    xiaxian=2;
                 }
                 else if(jiemian==0&&choose==3)
                 {
@@ -117,6 +119,16 @@ int Init_screen()
                 else if(jiemian==1&&choose==1)
                 {
                     jiemian=3;
+                }
+                else if(jiemian==2&&choose==1)
+                {
+                    jiemian=0;
+                    choose=1;
+                    xiaxian=4;
+                }
+                else if(jiemian==2&&choose==2)
+                {
+                    exit(0);
                 }
                break;
             case ALLEGRO_KEY_UP:
@@ -288,10 +300,9 @@ loop:case 0:
                 break;
             case 2:
             {
-                int redraw = 1;
-                int c = 1;
+
                 int result = 0;
-                char a[10], b[10], ch[10], Grade[10];
+                char a[10], b[10], ch[10];
                 int number[3];
                 int i = 0;
                 FILE *fp;
@@ -312,47 +323,7 @@ loop:case 0:
 
                 fclose(fp);
 
-                while(1)
-                {
 
-                    al_wait_for_event(event_queue,&ev);
-                    if(ev.type == ALLEGRO_EVENT_TIMER) {
-
-                        redraw = 1;
-                    }
-
-                    else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-
-                        break;
-                    }
-                    else if(ev.type == ALLEGRO_EVENT_KEY_DOWN) {
-                        switch (ev.keyboard.keycode) {
-                        case ALLEGRO_KEY_ENTER:
-                            if(c==1)
-                            {
-                                result=1;
-                            }
-                            if(c==2)
-                            {
-                                result=2;
-                            }
-                            break;
-                        case ALLEGRO_KEY_UP:
-                            c=1;
-                            break;
-                        case ALLEGRO_KEY_DOWN:
-                            c=2;
-                            break;
-                        }
-                    }
-                    else if(ev.type == ALLEGRO_EVENT_KEY_UP) {
-                        switch(ev.keyboard.keycode) {
-
-                        }
-                    }
-                    if(redraw && al_is_event_queue_empty(event_queue))
-                    {
-                        redraw = 0;
 
                         al_identity_transform(&transform);
                         al_translate_transform(&transform,0,0);
@@ -369,31 +340,22 @@ loop:case 0:
                             al_draw_text(font[1],black,DISPLAY_W/2+90,DISPLAY_H/3+175,ALLEGRO_ALIGN_CENTRE,b);
                             al_draw_text(font[1],black,DISPLAY_W/2-90,DISPLAY_H/3+300,ALLEGRO_ALIGN_CENTRE,"第三名:");
                             al_draw_text(font[1],black,DISPLAY_W/2+90,DISPLAY_H/3+300,ALLEGRO_ALIGN_CENTRE,ch);
-                            if(c==1)
+                            if(choose==1)
                             {
                                 al_draw_text(font[1],white,DISPLAY_W/2-500,DISPLAY_H/2+150,ALLEGRO_ALIGN_CENTRE,"返回");
                                 al_draw_text(font[2],black,DISPLAY_W/2-500,DISPLAY_H/2+200,ALLEGRO_ALIGN_CENTRE,"退出");
 
                             }
-                            if(c==2)
+                            if(choose==2)
                             {
                                 al_draw_text(font[1],white,DISPLAY_W/2-500,DISPLAY_H/2+200,ALLEGRO_ALIGN_CENTRE,"退出");
                                 al_draw_text(font[2],black,DISPLAY_W/2-500,DISPLAY_H/2+150,ALLEGRO_ALIGN_CENTRE,"返回");
                             }
                             al_flip_display();
                             break;
-                        case 1:
-                            jiemian = 0;
 
-                        case 2:
-                            exit(1);
                         }
-                    }
-
                 }
-
-
-            }
                 break;
             case 3:
                 juqing();
@@ -638,14 +600,7 @@ int Game_run()
                 {
                     xboss2_out=1;
                     init_xboss(xboss2,xb_blast2,2);
-                    if(grade>100)
-                    {
-                        for(int i=0;i<XBOSS_number;i++)
-                        {
-                            lord_xb_blast(xboss2,xb_blast2,&ship[0]);
-                        }
 
-                    }
                 }
                 if(xboss2_out==1)
                 {
@@ -689,7 +644,7 @@ int Game_run()
                     }
 
                 }
-                if(grade>=10&&boss2_out==1&&boss1_out==1)
+                if(grade>=1000&&boss2_out==1&&boss1_out==1)
                 {
                     boss1_out=0;
                     boss2_out=0;
@@ -776,7 +731,7 @@ int Game_run()
                             al_use_transform(&transform);
                             if(blast_h->sx>xboss[i].sx-20&&blast_h->sx<xboss[i].sx+20) //子弹射中彗星
                             {
-                                if (blast_h->sy-20>xboss[i].sy-20&&blast_h->sy-20<xboss[i].sy+20)
+                                if (blast_h->sy>xboss[i].sy-20&&blast_h->sy<xboss[i].sy+20)
                                 {
                                     xboss[i].gone=1;
                                     //al_rest(2);
@@ -806,8 +761,9 @@ int Game_run()
                             al_use_transform(&transform);
                             if(blast_h->sx>xboss2[i].sx-20&&blast_h->sx<xboss2[i].sx+20) //子弹射中彗星
                             {
-                                if (blast_h->sy-20>xboss2[i].sy-20&&blast_h->sy-20<xboss2[i].sy+20)
+                                if (blast_h->sy>xboss2[i].sy-20&&blast_h->sy<xboss2[i].sy+20)
                                 {
+
                                     xboss2[i].gone=1;
                                     //al_rest(2);
                                     Delete_Blast(&p_blast,bt);
@@ -877,7 +833,7 @@ int Game_run()
 
 int main(void)
 {
-    int o_or_c_start=0;
+    int o_or_c_start=1;
     GameInit(o_or_c_start);
      Music_init();
     if(o_or_c_start==0)
