@@ -19,7 +19,7 @@ int buff_out_time=0;// buff出现时间
 int buff_out = 0;
 int buff_xs=0;
 enum MYKEYS {
-    KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT,KEY_SPASE,KEY_Q,KEY_F,KEY_S,KEY_D,KEY_A
+    KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT,KEY_SPASE,KEY_Q,KEY_ESCAPE,KEY_S,KEY_D,KEY_A
 };
 //boss
 //剧情
@@ -443,6 +443,10 @@ int Game_run()
                     ship[0].sy -= 4.0 * cos(ship[0].heading);
 
                 }
+                if(key[KEY_ESCAPE])
+                {
+                    ship[0].live=0;
+                }
                 if(key[KEY_DOWN])
                 {
                     Scope_ship(&ship[0]);
@@ -512,6 +516,9 @@ int Game_run()
                 case ALLEGRO_KEY_Q:
                     key[KEY_Q] = true;
                     break;
+                case ALLEGRO_KEY_ESCAPE:
+                    key[KEY_ESCAPE] = true;
+                    break;
 
                 }
             }
@@ -538,6 +545,9 @@ int Game_run()
                     break;
                 case ALLEGRO_KEY_Q:
                     key[KEY_Q] = false;
+                    break;
+                case ALLEGRO_KEY_ESCAPE:
+                    key[KEY_ESCAPE] = false;
                     break;
 
                 }
@@ -833,7 +843,7 @@ int Game_run()
 
 int main(void)
 {
-    int o_or_c_start=1;
+    int o_or_c_start=0;
     GameInit(o_or_c_start);
      Music_init();
     if(o_or_c_start==0)
